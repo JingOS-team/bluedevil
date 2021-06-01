@@ -6,23 +6,23 @@
  */
 
 #include "receivefilejob.h"
+#include "debug_p.h"
 #include "filereceiversettings.h"
 #include "obexagent.h"
-#include "debug_p.h"
 
 #include <QDir>
 #include <QIcon>
-#include <QTimer>
 #include <QTemporaryFile>
+#include <QTimer>
 
 #include <KIO/CopyJob>
-#include <KNotification>
-#include <KLocalizedString>
 #include <KJobTrackerInterface>
+#include <KLocalizedString>
+#include <KNotification>
 
-#include <BluezQt/Manager>
 #include <BluezQt/Adapter>
 #include <BluezQt/Device>
+#include <BluezQt/Manager>
 #include <BluezQt/ObexSession>
 
 ReceiveFileJob::ReceiveFileJob(const BluezQt::Request<QString> &req, BluezQt::ObexTransferPtr transfer, BluezQt::ObexSessionPtr session, ObexAgent *parent)
@@ -123,13 +123,13 @@ void ReceiveFileJob::init()
 
 void ReceiveFileJob::showNotification()
 {
-    KNotification *notification = new KNotification(QStringLiteral("IncomingFile"),
-                                                      KNotification::Persistent, this);
+    KNotification *notification = new KNotification(QStringLiteral("IncomingFile"), KNotification::Persistent, this);
 
     notification->setTitle(QStringLiteral("%1 (%2)").arg(m_deviceName.toHtmlEscaped(), m_deviceAddress));
-    notification->setText(i18nc(
-        "Show a notification asking to authorize or deny an incoming file transfer to this computer from a Bluetooth device.",
-        "%1 is sending you the file %2", m_deviceName.toHtmlEscaped(), m_transfer->name()));
+    notification->setText(i18nc("Show a notification asking to authorize or deny an incoming file transfer to this computer from a Bluetooth device.",
+                                "%1 is sending you the file %2",
+                                m_deviceName.toHtmlEscaped(),
+                                m_transfer->name()));
 
     QStringList actions;
     actions.append(i18nc("Button to accept the incoming file transfer and download it in the default download directory", "Accept"));
@@ -156,9 +156,12 @@ void ReceiveFileJob::slotAccept()
     m_targetPath = FileReceiverSettings::self()->saveUrl().adjusted(QUrl::StripTrailingSlash);
     m_targetPath.setPath(m_targetPath.path() + QLatin1Char('/') + m_transfer->name());
 
-    Q_EMIT description(this, i18n("Receiving file over Bluetooth"),
-                    QPair<QString, QString>(i18nc("File transfer origin", "From"), m_deviceName),
-                    QPair<QString, QString>(i18nc("File transfer destination", "To"), m_targetPath.toDisplayString()));
+    setTotalAmount(Files, 1);
+
+    Q_EMIT description(this,
+                       i18n("Receiving file over Bluetooth"),
+                       QPair<QString, QString>(i18nc("File transfer origin", "From"), m_deviceName),
+                       QPair<QString, QString>(i18nc("File transfer destination", "To"), m_targetPath.toDisplayString()));
 
     m_tempPath = createTempPath(m_transfer->name());
     qCDebug(BLUEDAEMON) << "TempPath" << m_tempPath;
@@ -187,6 +190,8 @@ void ReceiveFileJob::moveFinished(KJob *job)
 
         QFile::remove(m_tempPath);
     }
+
+    setProcessedAmount(Files, 1);
 
     // Delay emitResult to make sure notification is displayed even
     // for very small files that are received instantly

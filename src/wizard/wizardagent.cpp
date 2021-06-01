@@ -8,15 +8,16 @@
 #include "wizardagent.h"
 #include "debug_p.h"
 
+#include <QDBusObjectPath>
 #include <QFile>
 #include <QStandardPaths>
-#include <QDBusObjectPath>
 #include <QXmlStreamReader>
 
-#include <KRandom>
 #include <KLocalizedString>
+#include <KRandom>
 
 #include <BluezQt/Device>
+#include <QDebug>
 
 WizardAgent::WizardAgent(QObject *parent)
     : BluezQt::Agent(parent)
@@ -46,8 +47,7 @@ QString WizardAgent::getPin(BluezQt::DevicePtr device)
     m_pin = QString::number(KRandom::random());
     m_pin = m_pin.left(6);
 
-    const QString &xmlPath = QStandardPaths::locate(QStandardPaths::DataLocation,
-                                                    QStringLiteral("pin-code-database.xml"));
+    const QString &xmlPath = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("pin-code-database.xml"));
 
     QFile file(xmlPath);
     if (!file.open(QIODevice::ReadOnly)) {
@@ -145,6 +145,7 @@ void WizardAgent::displayPasskey(BluezQt::DevicePtr device, const QString &passk
 
 void WizardAgent::requestConfirmation(BluezQt::DevicePtr device, const QString &passkey, const BluezQt::Request<> &req)
 {
+    
     qCDebug(WIZARD) << "AGENT-RequestConfirmation " << device->ubi() << passkey;
 
     Q_EMIT confirmationRequested(passkey, req);

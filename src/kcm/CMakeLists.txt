@@ -1,9 +1,13 @@
-set(kcmbluetooth_SRCS bluetooth.cpp)
+add_library(kcm_bluetooth MODULE 
+    bluetooth.cpp
+    bluetoothagent.cpp
+    resource.qrc
+    )
 
-kconfig_add_kcfg_files(kcmbluetooth_SRCS GENERATE_MOC
+find_package(Qt5 COMPONENTS Bluetooth)
+
+kconfig_add_kcfg_files(kcm_bluetooth GENERATE_MOC
                     ../settings/filereceiversettings.kcfgc)
-
-add_library(kcm_bluetooth MODULE ${kcmbluetooth_SRCS})
 
 target_link_libraries(kcm_bluetooth
     Qt5::Gui
@@ -13,7 +17,8 @@ target_link_libraries(kcm_bluetooth
     KF5::ConfigGui
     KF5::QuickAddons
     KF5::I18n
-    KF5::BluezQt
+    KF5::BluezQt 
+    KF5::Notifications
     )
 kcoreaddons_desktop_to_json(kcm_bluetooth "package/metadata.desktop")
 

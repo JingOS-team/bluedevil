@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>package/contents/ui/Bluetooth.qml</file>
+        <file>package/contents/ui/Home.qml</file>
+        <file>package/contents/ui/JScanner.qml</file>
+        <file>package/contents/ui/BluetoothDetail.qml</file>
+        <file>package/contents/ui/JInputDialog.qml</file>
+    </qresource>
+    <qresource prefix="/package/contents/image">
+        <file alias="cancel.png">package/contents/image/cancel.png</file>
+        <file alias="confirm.png">package/contents/image/confirm.png</file>
+        <file alias="confirm_disable.png">package/contents/image/confirm_disable.png</file>
+        <file alias="txt_close.png">package/contents/image/txt_close.png</file>
+    </qresource>
+</RCC>

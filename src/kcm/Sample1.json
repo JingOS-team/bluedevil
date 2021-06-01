@@ -1,0 +1,25 @@
+{
+  "MODULE_NAME": "bt_pair",
+  "bt": {
+    "list": [
+      {
+        "stn_code": "DRD",
+        "stn_name": "DAHANU ROAD",
+        "wait_time": "1",
+        "platform_left": "true"
+      },
+      {
+        "stn_code": "VGN",
+        "stn_name": "VANGAON",
+        "wait_time": "1",
+        "platform_left": "true"
+      },
+      {
+        "stn_code": "BOR",
+        "stn_name": "BOISAR",
+        "wait_time": "1",
+        "platform_left": "true"
+      }
+    ]
+  }
+}
