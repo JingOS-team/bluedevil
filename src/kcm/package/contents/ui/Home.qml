@@ -1,8 +1,11 @@
-/**
- * SPDX-FileCopyrightText: 2021 Wang Rui <wangrui@jingos.com>
- *                         
- * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+/*
+ * Copyright (C) 2021 Beijing Jingling Information System Technology Co., Ltd. All rights reserved.
+ *
+ * Authors:
+ * Liu Bangguo <liubangguo@jingos.com>
+ *
  */
+
 
 import QtQuick 2.2
 import QtQuick.Layouts 1.3
@@ -15,26 +18,72 @@ import org.kde.kcm 1.2
 import org.kde.bluezqt 1.0 as BluezQt
 import QtBluetooth 5.2
 import org.kde.plasma.private.bluetooth 1.0
-
+import jingos.display 1.0
 Item {
-
     id: root
 
-    property int appFontSize: theme.defaultFont.pointSize
-    property bool isBluetoothOn: !BluezQt.Manager.bluetoothBlocked
+    property bool isBluetoothOn: !BluezQt.Manager.bluetoothBlocked && isAdapterPowered()
     property QtObject manager: BluezQt.Manager
     property int devicesCount: manager.devices.length
     property int adaptersCount: manager.adapters.length
     property BluetoothService currentService
+    property var isCurrentConnectting: false
+    property bool bluetoothOffMask: false
+
+    function isAdapterPowered() {
+        var adapter = BluezQt.Manager.adapters[0]
+        var isPowered = adapter.powered
+        return isPowered;
+    }
 
     function setBluetoothEnabled(enabled) {
-        BluezQt.Manager.bluetoothBlocked = !enabled
+        //BluezQt.Manager.bluetoothBlocked = !enabled
+        if(enabled && BluezQt.Manager.bluetoothBlocked){
+            BluezQt.Manager.bluetoothBlocked = false
+        }
+        if(!enabled){
+            //isCurrentConnectting = true
+            bluetoothOffMask = true
+        }
+
         for (var i = 0; i < BluezQt.Manager.adapters.length; ++i) {
             var adapter = BluezQt.Manager.adapters[i]
             adapter.powered = enabled
         }
-        if (enabled) {
-            //scanner.startScaner()
+        //if (enabled) {
+        //    //scanner.startScaner()
+        //    timer.running = true
+        //}
+    }
+
+    Connections {
+        target: kcm
+
+        onCurrentIndexChanged:{
+            if(index == 1){
+                recent_tags.text = kcm.getLocalDeviceName();
+                bt_root.popAllView();
+            }
+        }
+    }
+
+    onVisibleChanged: {
+        kcm.setAdatporDiscovery(visible);
+        kcm.setAdatporCoverable(visible);
+    }
+
+
+
+
+    Timer {
+        id: timer
+
+        interval: 500
+        repeat: false
+        running: false
+
+        onTriggered: {
+           //kcm.setAdatporCoverable(true)
         }
     }
 
@@ -44,6 +93,17 @@ Item {
         onLocalDeviceNameChanged: {
             recent_tags.text = localDeviceName
         }
+        onPoweredChangedToQml: {
+            if(!powered){
+
+            }
+            bluetoothOffMask = false
+            //isCurrentConnectting = false
+
+            if(powered){
+                kcm.setAdatporCoverable(true);
+            }
+        }
     }
 
     Component.onCompleted: {
@@ -52,63 +112,71 @@ Item {
     Rectangle {
         anchors.fill: parent
 
-        color: "#FFF6F9FF"
+        color: settingMinorBackground
 
-        Text {
+        Item {
             id: blue_title
-
             anchors {
                 left: parent.left
+                leftMargin: 20 * appScaleSize
+                right: parent.right
+                rightMargin: 20 * appScaleSize
                 top: parent.top
-                leftMargin: 20 * appScale
-                topMargin: 48 * appScale
+                topMargin:  JDisplay.statusBarHeight
             }
 
-            width: 360
-            height: 20 * appScale
-            
-            text: i18n("Bluetooth")
-            font.pixelSize: 20
-            font.bold: true
+            height: 62 * appScaleSize
+
+            Text {
+                text: i18n("Bluetooth")
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenterOffset: 6 * appScaleSize
+                font.pixelSize: 20 * appFontSize
+                font.bold: true
+                color: majorForeground
+                MouseArea {
+                    anchors.fill:parent
+                    onClicked:{
+                         
+                    }
+                }
+            }
         }
 
         Rectangle {
             id: blue_switch_area
 
+            width: parent.width - 40 * appScaleSize
+            height: !bt_switch.checked ? 45 * appScaleSize : 2 * 45 * appScaleSize
             anchors {
                 left: parent.left
                 top: blue_title.bottom
-                leftMargin: 20 * appScale
+                leftMargin: 20 * appScaleSize
                 right: parent.right
-                rightMargin: 20 * appScale
-                topMargin: 18 * appScale
+                rightMargin: 20 * appScaleSize
             }
 
-            width: parent.width - 40 * appScale
-            height: !bt_switch.checked ? 45 * appScale : 2 * 45 * appScale
+            color: cardBackground
+            radius: 10 * appScaleSize
 
-            color: "white"
-            radius: 10 * appScale
-
-            Rectangle {
+            Item {
                 id: bt_switch_item
 
                 width: parent.width
-                height: 45 * appScale //parent.height
-
-                color: "transparent"
+                height: 45 * appScaleSize //parent.height
 
                 Text {
                     id: bt_title
 
                     anchors {
                         left: parent.left
-                        leftMargin: 20 * appScale
+                        leftMargin: 20 * appScaleSize
                         verticalCenter: parent.verticalCenter
                     }
 
                     text: i18n("Bluetooth")
-                    font.pixelSize: 14
+                    font.pixelSize: 14 * appFontSize
+                    color: majorForeground
                 }
 
                 Kirigami.JSwitch {
@@ -117,27 +185,30 @@ Item {
                     anchors {
                         verticalCenter: parent.verticalCenter
                         right: parent.right
-                        rightMargin: 20 * appScale
+                        rightMargin: 20 * appScaleSize
                     }
 
-                    checked: isBluetoothOn
-                    checkable: true
+                    implicitWidth: 43 * appScaleSize
+                    implicitHeight: 26 * appScaleSize
 
-                    onCheckedChanged: {
-                        if (!checked && BluezQt.Manager.bluetoothOperational) {
+                    checked: isBluetoothOn
+                    checkable: !isCurrentConnectting
+
+                    onClicked: {
+                        if(isCurrentConnectting){
+                           showToast(i18n("Do not turn off Bluetooth during the connection"))
+                        }
+                    }
+
+                    onToggled: {
+                        
+                        if (!bt_switch.checked && BluezQt.Manager.bluetoothOperational) {
                             bt_root.connectedAdress = ""
                             root.setBluetoothEnabled(false)
                             devicesProxyModel.removeConnectedName()
+                            return
                         }
-
-                        if (checked && BluezQt.Manager.operational
-                                && !BluezQt.Manager.bluetoothOperational) {
-                            root.setBluetoothEnabled(true)
-                            if (checked
-                                    && devicesProxyModel.connectedAdress != "") {
-
-                            }
-                        }
+                        root.setBluetoothEnabled(true)
                     }
                 }
             }
@@ -145,45 +216,43 @@ Item {
             Kirigami.Separator {
                 id: sepatatooLine
 
-                anchors {
-                    top: bt_switch_item.bottom
-                    left: parent.left
-                    right: parent.right
-                    rightMargin: 20 * appScale
-                    leftMargin: 20 * appScale
-                }
+                    anchors {
+                        bottom: bt_switch_item.bottom
+                        left: parent.left
+                        right: parent.right
+                        rightMargin: 20 * appScaleSize
+                        leftMargin: 20 * appScaleSize
+                    }
 
-                width: parent.width
-                height: 1
+                    height: 1
 
-                visible: bt_switch.checked
-                color: "#FFE5E5EA"
+                    visible: bt_switch.checked
+                    color: dividerForeground
             }
 
-            Rectangle {
+            Item {
                 id: recent_title_layout
 
                 anchors {
                     left: parent.left
                     right: parent.right
-                    top: sepatatooLine.bottom
+                    top: bt_switch_item.bottom
                 }
 
-                height: 45 * appScale
+                height: 45 * appScaleSize
 
                 visible: bt_switch.checked
-                color: "transparent"
 
                 Text {
                     anchors {
                         left: parent.left
-                        leftMargin: 20 * appScale
+                        leftMargin: 20 * appScaleSize
                         verticalCenter: parent.verticalCenter
                     }
 
                     text: i18n("Device Name")
-                    font.pixelSize: 14
-                    color: "black"
+                    font.pixelSize: 14 * appFontSize
+                    color: majorForeground
                 }
 
                 Text {
@@ -191,7 +260,7 @@ Item {
 
                     anchors {
                         right: image_edit.left
-                        rightMargin: 9 * appScale
+                        rightMargin: 9 * appScaleSize
                         verticalCenter: parent.verticalCenter
                     }
 
@@ -199,33 +268,35 @@ Item {
 
                     elide: Text.ElideRight
                     horizontalAlignment: Text.AlignRight
-                    text: kcm.localDeviceName
-                    font.pointSize: appFontSize + 2
-                    color: "black"
+                    text: kcm.getLocalDeviceName()
+                    font.pixelSize: 14 * appFontSize
+                    color: Kirigami.JTheme.minorForeground
                 }
 
-                Image {
+                Kirigami.Icon {
                     id: image_edit
 
                     anchors {
                         right: parent.right
-                        rightMargin: 17 * appScale
+                        rightMargin: 17 * appScaleSize
                         verticalCenter: parent.verticalCenter
                     }
 
-                    width: 22 * appScale
-                    height: 22 * appScale
+                    width: 22 * appScaleSize
+                    height: 22 * appScaleSize
 
-                    source: "../image/edit_name.png"
-                    MouseArea {
-                        anchors.fill: parent
+                    source: Qt.resolvedUrl("../image/edit_name.png")
+                    color:Kirigami.JTheme.minorForeground
 
-                        onClicked: {
-                            editDialog.inputText = recent_tags.text
-                            editDialog.visible = true
-                            editDialog.forceActiveFocus()
-                            editDialog.focus = true
-                        }
+                }
+                MouseArea {
+                    anchors.fill: image_edit
+
+                    onClicked: {
+                        editDialog.open()
+                        editDialog.forceActiveFocus()
+                        editDialog.focus = true
+                        editDialog.inputText = recent_tags.text
                     }
                 }
             }
@@ -237,18 +308,23 @@ Item {
             height: scanner.lvHeight - 1
             width: parent.width
 
-            radius: 10 * appScale
-            visible: isBluetoothOn
+            radius: 10 * appScaleSize
+            visible: bt_switch.checked
+            color: cardBackground
 
             anchors {
                 top: blue_switch_area.bottom
-                topMargin: 24 * appScale
+                topMargin: 24 * appScaleSize
                 left: blue_switch_area.left
                 right: blue_switch_area.right
             }
 
             JScanner {
                 id: scanner
+
+                onConnectedUpdate:{
+                    isCurrentConnectting = isConnectting
+                }
             }
         }
     }
@@ -257,21 +333,49 @@ Item {
         id: editDialog
 
         title: i18n("Device Name")
-        text: i18n("Other devices will see this name when you use Bluetooth,WLAN Direct,Personal hotspot and USB.")
+        text: i18n("Other devices will see this name when you use Bluetooth and USB.")
         inputEnable: true
         showPassword: false
         leftButtonText: i18n("Cancel")
-        rightButtonText: i18n("Ok")
+        rightButtonText: i18n("OK")
+
+        onInputTextChanged: {
+            if (inputText.length > 32) {
+                editDialog.inputText = inputText.substring(0, 32)
+            }
+            if (inputText.length < 1) {
+                rightButtonEnable = false
+            } else {
+                rightButtonEnable = true
+            }
+        }
 
         onRightButtonClicked: {
+            if (!rightButtonEnable) {
+                return;
+            }
             if (editDialog.inputText.length != 0) {
                 kcm.setLocalDeviceName(editDialog.inputText)
             }
-            editDialog.visible = false
+            editDialog.close()
         }
-        
+
         onLeftButtonClicked: {
-            editDialog.visible = false
+            //clear inputText when cancel
+            editDialog.inputText = ""
+            editDialog.close()
         }
+    }
+
+    ToastView {
+        id: toastView
+    }
+
+    function showToast(tips)
+    {
+        toastView.toastContent = tips
+        toastView.x = (root.width - toastView.width - 200) / 2
+        toastView.y = root.width - toastView.height - 36
+        toastView.visible = true
     }
 }

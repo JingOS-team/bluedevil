@@ -1,6 +1,7 @@
 /*
  *   SPDX-FileCopyrightText: 2010 Alex Fiestas <alex@eyeos.org>
  *   SPDX-FileCopyrightText: 2010 UFO Coders <info@ufocoders.com>
+ *   SPDX-FileCopyrightText: 2021 Liu Bangguo <liubangguo@jingos.com>
  *
  *   SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -17,7 +18,6 @@
 #include <KRandom>
 
 #include <BluezQt/Device>
-#include <QDebug>
 
 WizardAgent::WizardAgent(QObject *parent)
     : BluezQt::Agent(parent)
@@ -145,7 +145,6 @@ void WizardAgent::displayPasskey(BluezQt::DevicePtr device, const QString &passk
 
 void WizardAgent::requestConfirmation(BluezQt::DevicePtr device, const QString &passkey, const BluezQt::Request<> &req)
 {
-    
     qCDebug(WIZARD) << "AGENT-RequestConfirmation " << device->ubi() << passkey;
 
     Q_EMIT confirmationRequested(passkey, req);

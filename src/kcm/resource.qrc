@@ -5,6 +5,7 @@
         <file>package/contents/ui/JScanner.qml</file>
         <file>package/contents/ui/BluetoothDetail.qml</file>
         <file>package/contents/ui/JInputDialog.qml</file>
+        <file>package/contents/ui/ToastView.qml</file>
     </qresource>
     <qresource prefix="/package/contents/image">
         <file alias="cancel.png">package/contents/image/cancel.png</file>

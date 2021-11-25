@@ -26,7 +26,12 @@
 #include <QTimer>
 #include <BluezQt/MediaPlayer>
 
+#include <KConfigGroup>
+#include <KSharedConfig>
+#include <limits>
+
 K_PLUGIN_CLASS_WITH_JSON(Bluetooth, "metadata.json")
+
 
 Bluetooth::Bluetooth(QObject *parent, const QVariantList &args)
     : KQuickAddons::ConfigModule(parent, args)
@@ -40,12 +45,22 @@ Bluetooth::Bluetooth(QObject *parent, const QVariantList &args)
     setButtons(KQuickAddons::ConfigModule::NoAdditionalButton);
 
     m_manager = new BluezQt::Manager(this);
-    BluezQt::InitManagerJob *initJob = m_manager->init();
+    initJob = m_manager->init();
     initJob->start();
     connect(initJob, &BluezQt::InitManagerJob::result, this, &Bluetooth::initJobResult);
     connect(m_manager, &BluezQt::Manager::bluetoothBlockedChanged, this, &Bluetooth::bluetoothBlockedChanged);
     connect(m_agent, &BluetoothAgent::pinRequested, this, &Bluetooth::pinRequested);
     connect(m_agent, &BluetoothAgent::confirmationRequested, this, &Bluetooth::confirmationRequested);
+
+     if (!QDBusConnection::sessionBus().registerObject("/org/kde/jingos/kcm_bluetooth", this,
+                                                     QDBusConnection::ExportScriptableSlots |
+                                                     QDBusConnection::ExportAllSignals |      //add by huanlele
+                                                     QDBusConnection::ExportScriptableProperties |
+                                                     QDBusConnection::ExportAdaptors))
+    {
+        qWarning() << "bluetooth:Could not initiate DBus helper!";
+    }
+    m_dbusMessage =  QDBusMessage::createSignal("/org/kde/jingos/kcm_bluetooth", "org.kde.jingos.kcm_bluetooth", "deviceRemove");
 }
 
 Bluetooth::~Bluetooth() 
@@ -56,6 +71,10 @@ Bluetooth::~Bluetooth()
         delete m_agent;
         delete m_manager;
     }
+
+    // if (initJob != nullptr) {
+    //     initJob = nullptr;
+    // }
 }
 
 void Bluetooth::bluetoothBlockedChanged(bool blocked)
@@ -64,10 +83,10 @@ void Bluetooth::bluetoothBlockedChanged(bool blocked)
         BluezQt::AdapterPtr adaptor = m_manager->adapters().at(0);
         if(adaptor){
             m_localDeviceName = adaptor->name();
-            Q_EMIT localDeviceNameChanged(m_localDeviceName);
+            //Q_EMIT localDeviceNameChanged(m_localDeviceName);
             if(adaptor->isDiscoverable() == false){
-                qDebug()<<"setAdatporCoverable ::: "<<true;
-                adaptor->setDiscoverable(true);
+                //qDebug()<<"setAdatporCoverable ::: "<<true;
+                //adaptor->setDiscoverable(true);
             }
         }
     }
@@ -140,18 +159,54 @@ void Bluetooth::initJobResult(BluezQt::InitManagerJob *job)
     operationalChanged(m_manager->isOperational());
     connect(m_manager, &BluezQt::Manager::operationalChanged, this, &Bluetooth::operationalChanged);
     m_adapter = m_manager->usableAdapter();
-    if(m_adapter){
-        m_localDeviceName = m_adapter->name();
-        if(m_adapter->name() == "localhost.localdomain"){
-            m_localDeviceName = "JingOS";
-            setLocalDeviceName("JingOS");
-        }
-        Q_EMIT localDeviceNameChanged(m_localDeviceName);
+
+    if(!m_adapter && m_manager->adapters().length() > 0){
+        m_adapter = m_manager->adapters().at(0);
     }
+    
+    if(m_adapter){
+        if(!m_adapter->isPairable()){
+            m_adapter->setPairable(true);
+        }
+        m_localDeviceName = m_adapter->name();
+
+        if(getLocalDeviceName().isEmpty()){
+            setLocalDeviceName("JingPad");
+        }else{
+            if(m_localDeviceName != getLocalDeviceName()){
+                setLocalDeviceName(m_localDeviceName);
+                Q_EMIT localDeviceNameChanged(m_localDeviceName);
+            }
+        }
+        
+        // if(m_adapter->name() == "localhost.localdomain"){
+        //     m_localDeviceName = "JingPad";
+        //     setLocalDeviceName("JingPad");
+        // }
+        connect(m_adapter.data(),&BluezQt::Adapter::poweredChanged,this,&Bluetooth::poweredChanged);
+        
+    }
+
     if (m_adapter && !m_adapter->isDiscovering()) {
         m_adapter->startDiscovery();
     }
-     connect(m_manager, &BluezQt::Manager::usableAdapterChanged, this, &Bluetooth::usableAdapterChanged);
+    
+    connect(m_manager, &BluezQt::Manager::usableAdapterChanged, this, &Bluetooth::usableAdapterChanged);
+    
+}
+
+void Bluetooth::poweredChanged(bool  powered)
+{
+    if(!powered){
+        QDBusConnection::sessionBus().send(m_dbusMessage);
+    }
+    Q_EMIT poweredChangedToQml(powered);
+}
+
+void Bluetooth::connectionStateChange(const bool status){
+    if(!status){
+        QDBusConnection::sessionBus().send(m_dbusMessage);
+    }
 }
 
 void Bluetooth::operationalChanged(bool operational)
@@ -159,6 +214,8 @@ void Bluetooth::operationalChanged(bool operational)
     if (operational) {
         if(!m_manager->isBluetoothBlocked()){
             setAdatporCoverable(true);
+        } else {
+            m_manager->setBluetoothBlocked(false);
         }
         m_manager->registerAgent(m_agent);
     } else {
@@ -172,6 +229,26 @@ void Bluetooth::usableAdapterChanged(BluezQt::AdapterPtr adapter)
     m_adapter = adapter;
 
     if (m_adapter && !m_adapter->isDiscovering()) {
+        m_adapter->startDiscovery();
+    }
+}
+
+void Bluetooth::refreshDiscovery()
+{
+    if (m_adapter && !m_adapter->isDiscovering()) {
+        m_adapter->startDiscovery();
+    }else if(m_adapter && m_adapter->isDiscovering()){
+        BluezQt::PendingCall *stopDiscoveryCall = m_adapter->stopDiscovery();
+        connect(stopDiscoveryCall, &BluezQt::PendingCall::finished, this, &Bluetooth::stopDiscoveryFinish);
+    }
+}
+
+void Bluetooth::stopDiscoveryFinish(BluezQt::PendingCall *call)
+{
+    if(call->error()){
+      qDebug() <<"stopDiscoveryFinish code : "<<call->error()<< "\t errorText : " << call->errorText();  
+        m_adapter->startDiscovery();
+    }else{
         m_adapter->startDiscovery();
     }
 }
@@ -195,7 +272,7 @@ void Bluetooth::connectFinished(BluezQt::PendingCall *call)
         }
         // Mark as response to explicit user action ("pairing the device")
         notification->setHint(QStringLiteral("x-kde-user-action-feedback"), true);
-        notification->sendEvent();
+        //notification->sendEvent();
         Q_EMIT connectSuccess(m_device->address());
     }else{
         //Q_EMIT showPariErrorDialog(m_device->name(),16);
@@ -203,16 +280,19 @@ void Bluetooth::connectFinished(BluezQt::PendingCall *call)
     }
 }
 
-void Bluetooth::pinRequested(const QString &pin)
+void Bluetooth::pinRequested(const BluezQt::DevicePtr device,const QString &pin)
 {
-    Q_EMIT showKeyboardPairDialog(m_device->name(),pin,true);
+    Q_EMIT showKeyboardPairDialog(device->name(),pin,true);
 }
 
-void Bluetooth::confirmationRequested(const QString &passkey, const BluezQt::Request<> &req)
+void Bluetooth::confirmationRequested(const BluezQt::DevicePtr device, const QString &passkey, const BluezQt::Request<> &req)
 {
     m_req = req;
-    Q_EMIT showPairDialog(m_device->name(),passkey,true);
+    m_device = device; 
+    Q_EMIT showPairDialog(device->name(),passkey,true);
     m_cancel = false;
+    connect(m_agent, SIGNAL(agentCanceled()), this, SLOT(cancelAgent()));
+    // connect(m_agent, &BluetoothAgent::agentCanceled, this, &Bluetooth::cancelAgent);
 }
 
 void Bluetooth::confirmMatchButton(const bool match)
@@ -228,21 +308,25 @@ void Bluetooth::confirmMatchButton(const bool match)
 void Bluetooth::pairingFinished(BluezQt::PendingCall *call)
 {
     if(call->error()){
-      qDebug() <<"code : "<<call->error()<< "\t errorText : " << call->errorText();  
+        //m_agent->cancel();    
+        qDebug() <<"code : "<<call->error()<< "\t errorText : " << call->errorText();  
     }
 
-    if(m_device->type() == 7){
+    if(m_device->type() == 7){//keyboard
         Q_EMIT showKeyboardPairDialog(m_device->name(),"",false);
     }
 
     if(!call->error()){
         pairingSuccess();
     }else{
-        if(m_device->type() == 7){
+        if(m_device->type() == 7){//keyboard
             pairingFailed(call->error());
+            // refreshDiscovery();
+            return;
         }
         if(call->error() == 98){
-            Q_EMIT showPairDialog(m_device->name(),"",false);
+            // Q_EMIT showPairDialog(m_device->name(),"",false);
+            Q_EMIT showPariErrorDialog(m_device->name(),98,m_device->type());
         }else{
             if(m_cancel){
                 Q_EMIT showPairDialog(m_device->name(),"",false);
@@ -256,12 +340,19 @@ void Bluetooth::pairingFinished(BluezQt::PendingCall *call)
 void Bluetooth::pairingSuccess()
 {   
     BluezQt::PendingCall *call = m_device->connectToDevice();
+    m_device->setTrusted(true);
     connect(call, &BluezQt::PendingCall::finished, this, &Bluetooth::connectFinished);
 }
 
 void Bluetooth::pairingFailed(const int errorCode)
 {
     Q_EMIT showPariErrorDialog(m_device->name(),errorCode,m_device->type());
+}
+
+void Bluetooth::cancelAgent()
+{
+    Q_EMIT showPariErrorDialog(m_device->name(),15, m_device->type());
+    //m_agent->cancel();
 }
 
 void Bluetooth::connectToDevice(const QString connAddress, const QString address)
@@ -305,6 +396,7 @@ void Bluetooth::disconnectFromDeviceFinished(BluezQt::PendingCall *call)
       qDebug() <<"code : "<<call->error()<< "\t errorText : " << call->errorText();  
     }else{
         Q_EMIT disconnectDeviceFinishedToQml();
+        QDBusConnection::sessionBus().send(m_dbusMessage);
     }
 }
 
@@ -320,6 +412,7 @@ void Bluetooth::deviceRemoved(const QString address)
 
 void Bluetooth::removeDeviceFinished(BluezQt::PendingCall *call)
 {
+    QDBusConnection::sessionBus().send(m_dbusMessage);
     Q_EMIT removeDeviceFinishedToQml();
 }
 
@@ -330,30 +423,64 @@ void Bluetooth::setName(const QString address,const QString name)
     device->setName(name);
 }
 
+void Bluetooth::setAdatporDiscovery(const bool visible)
+{
+    if(m_adapter){
+        if(visible == false)
+        m_adapter->stopDiscovery();
+        else m_adapter->startDiscovery();
+    }
+}
+
 void Bluetooth::setAdatporCoverable(const bool visible)
 {
-    BluezQt::AdapterPtr adaptor = m_manager->adapters().at(0);
+    QList<BluezQt::AdapterPtr> adapters = m_manager->adapters();
+    BluezQt::AdapterPtr adaptor;
+    if(adapters.length() > 0){
+        adaptor = adapters.at(0);
+    }
     if(adaptor && adaptor->isDiscoverable() != visible){
-        qDebug()<<"setAdatporCoverable ::: "<<visible;
+        qDebug()<<std::numeric_limits<quint32>::max()<<"  setAdatporCoverable ::: "<<visible;
+
+        adaptor->setDiscoverableTimeout(std::numeric_limits<quint32>::max());
         adaptor->setDiscoverable(visible);
     }
 }
 
+bool Bluetooth::getAdatporCoverable()
+{
+    BluezQt::AdapterPtr adaptor = m_manager->adapters().at(0);
+    if(adaptor){
+        qDebug()<<"getAdatporCoverable ::: "<<adaptor->isDiscoverable()<<"  "<<adaptor->isPairable()<<" "<<adaptor->isPowered();
+        return adaptor->isDiscoverable();
+    }
+    return false;
+}
+
 QString Bluetooth::getLocalDeviceName()
 {
-    BluezQt::AdapterPtr adaptor = m_manager->usableAdapter();
-    if(adaptor){
-       return adaptor->name(); 
-    }
-    return "";
+    // BluezQt::AdapterPtr adaptor = m_manager->usableAdapter();
+    // if(adaptor){
+    //    return adaptor->name(); 
+    // }
+    // return "";
+    auto kdeglobals = KSharedConfig::openConfig("kdeglobals");
+    KConfigGroup cfg(kdeglobals, "SystemInfo");
+    return cfg.readEntry("deviceName", QString());
 }
 
 void Bluetooth::setLocalDeviceName(const QString localName)
 {
-    BluezQt::AdapterPtr adaptor = m_manager->usableAdapter();
+    // BluezQt::AdapterPtr adaptor = m_manager->usableAdapter();
+    BluezQt::AdapterPtr adaptor = m_manager->adapters().at(0);
     adaptor->setName(localName);
     m_localDeviceName = localName;
     Q_EMIT localDeviceNameChanged(m_localDeviceName);
+
+    auto kdeglobals = KSharedConfig::openConfig("kdeglobals");
+    KConfigGroup cfg(kdeglobals, "SystemInfo");
+    cfg.writeEntry("deviceName", localName);
+    kdeglobals->sync();
 }
 
 void Bluetooth::stopMediaPlayer(const QString address)
@@ -376,8 +503,8 @@ void Bluetooth::mediaPlayerStopFinish(BluezQt::PendingCall *call)
 
 void Bluetooth::setBluetoothEnabled(const bool isEnable)
 {
-    m_manager->setBluetoothBlocked(isEnable);
-    BluezQt::AdapterPtr adaptor = m_manager->adapters().at(0);  
+    //m_manager->setBluetoothBlocked(isEnable);
+    BluezQt::AdapterPtr adaptor = m_manager->adapters().at(0);
     m_adapter = adaptor; 
     if(isEnable){
         BluezQt::PendingCall *powerOnCall =  adaptor->setPowered(true);

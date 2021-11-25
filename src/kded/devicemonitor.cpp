@@ -1,5 +1,6 @@
 /*
  *   SPDX-FileCopyrightText: 2015 David Rosca <nowrep@gmail.com>
+ *   SPDX-FileCopyrightText: 2021 Liu Bangguo <liubangguo@jingos.com>
  *
  *   SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -128,7 +129,7 @@ void DeviceMonitor::restoreState()
 
     Q_FOREACH (BluezQt::AdapterPtr adapter, m_manager->adapters()) {
         const QString key = QStringLiteral("%1_powered").arg(adapter->address());
-        adapter->setPowered(adaptersGroup.readEntry<bool>(key, true));
+        adapter->setPowered(adaptersGroup.readEntry<bool>(key, false));
     }
 
     KConfigGroup devicesGroup = m_config->group("Devices");
@@ -147,7 +148,7 @@ void DeviceMonitor::restoreAdapter(BluezQt::AdapterPtr adapter)
     KConfigGroup adaptersGroup = m_config->group("Adapters");
 
     const QString &key = QStringLiteral("%1_powered").arg(adapter->address());
-    adapter->setPowered(adaptersGroup.readEntry<bool>(key, true));
+    adapter->setPowered(adaptersGroup.readEntry<bool>(key, false));
 }
 
 void DeviceMonitor::clearPlaces()

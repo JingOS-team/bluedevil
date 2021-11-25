@@ -1,0 +1,313 @@
+# translation of kcm_bluetooth.po Slovak
+# Roman Paholik <wizzardsk@gmail.com>, 2020.
+# Matej Mrenica <matejm98mthw@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: kcm_bluetooth\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-21 02:49+0100\n"
+"PO-Revision-Date: 2020-09-26 16:55+0200\n"
+"Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
+"Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.08.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Roman Paholík"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "wizzardsk@gmail.com"
+
+#: bluetooth.cpp:26
+#, kde-format
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: bluetooth.cpp:27
+#, kde-format
+msgid "Nicolas Fella"
+msgstr "Nicolas Fella"
+
+#: bluetooth.cpp:86
+#, kde-format
+msgctxt "DeviceName Network (Service)"
+msgid "%1 Network (%2)"
+msgstr "%1 Sieť (%2)"
+
+#: package/contents/ui/Bluetooth.qml:48
+#, kde-format
+msgid "No Bluetooth adapters found"
+msgstr "Nenájdené žiadne Bluetooth adaptéry."
+
+#: package/contents/ui/Bluetooth.qml:56
+#, kde-format
+msgid "Bluetooth is disabled"
+msgstr "Bluetooth je zakázaný"
+
+#: package/contents/ui/Bluetooth.qml:62
+#, kde-format
+msgid "Enable"
+msgstr "Povoliť"
+
+#: package/contents/ui/Bluetooth.qml:71
+#, kde-format
+msgid "No devices paired"
+msgstr ""
+
+#: package/contents/ui/Bluetooth.qml:92
+#, kde-format
+msgid "Connected"
+msgstr "Pripojené"
+
+#: package/contents/ui/Bluetooth.qml:92
+#, kde-format
+msgid "Available"
+msgstr "Dostupný"
+
+#: package/contents/ui/Bluetooth.qml:114 package/contents/ui/Device.qml:68
+#, kde-format
+msgid "Disconnect"
+msgstr "Odpojiť"
+
+#: package/contents/ui/Bluetooth.qml:114 package/contents/ui/Device.qml:68
+#, kde-format
+msgid "Connect"
+msgstr "Pripojiť"
+
+#: package/contents/ui/Bluetooth.qml:125
+#, kde-format
+msgid "Remove"
+msgstr "Odstrániť"
+
+#: package/contents/ui/Bluetooth.qml:148
+#, kde-format
+msgid "Add..."
+msgstr "Pridať..."
+
+#: package/contents/ui/Bluetooth.qml:156
+#, kde-format
+msgid "Disable Bluetooth"
+msgstr "Zakázať bluetooth"
+
+#: package/contents/ui/Bluetooth.qml:169
+#, kde-format
+msgid "Configure..."
+msgstr "Nastaviť..."
+
+#: package/contents/ui/Device.qml:100
+#, kde-format
+msgid "Type:"
+msgstr "Typ:"
+
+#: package/contents/ui/Device.qml:105 package/contents/ui/General.qml:41
+#, kde-format
+msgid "Address:"
+msgstr "Adresa:"
+
+#: package/contents/ui/Device.qml:110
+#, kde-format
+msgid "Adapter:"
+msgstr "Adaptér:"
+
+#: package/contents/ui/Device.qml:116 package/contents/ui/General.qml:35
+#, kde-format
+msgid "Name:"
+msgstr "Názov:"
+
+#: package/contents/ui/Device.qml:120
+#, kde-format
+msgid "Trusted"
+msgstr "Dôveryhodný"
+
+#: package/contents/ui/Device.qml:126
+#, kde-format
+msgid "Blocked"
+msgstr "Blokovaný"
+
+#: package/contents/ui/Device.qml:132
+#, kde-format
+msgid "Send File"
+msgstr "Odoslať súbor"
+
+#: package/contents/ui/Device.qml:139
+#, kde-format
+msgid "Setup NAP Network..."
+msgstr "Nastaviť NAP sieť..."
+
+#: package/contents/ui/Device.qml:146
+#, kde-format
+msgid "Setup DUN Network..."
+msgstr "Nastaviť DUN sieť..."
+
+#: package/contents/ui/Device.qml:156
+#, kde-format
+msgctxt "This device is a Phone"
+msgid "Phone"
+msgstr "Telefón"
+
+#: package/contents/ui/Device.qml:158
+#, kde-format
+msgctxt "This device is a Modem"
+msgid "Modem"
+msgstr "Modem"
+
+#: package/contents/ui/Device.qml:160
+#, kde-format
+msgctxt "This device is a Computer"
+msgid "Computer"
+msgstr "Počítač"
+
+#: package/contents/ui/Device.qml:162
+#, kde-format
+msgctxt "This device is of type Network"
+msgid "Network"
+msgstr "Sieť"
+
+#: package/contents/ui/Device.qml:164
+#, kde-format
+msgctxt "This device is a Headset"
+msgid "Headset"
+msgstr "Náhlavná súprava"
+
+#: package/contents/ui/Device.qml:166
+#, kde-format
+msgctxt "This device is a Headphones"
+msgid "Headphones"
+msgstr "Slúchadlá"
+
+#: package/contents/ui/Device.qml:168
+#, kde-format
+msgctxt "This device is an Audio device"
+msgid "Audio"
+msgstr "Zvuk"
+
+#: package/contents/ui/Device.qml:170
+#, kde-format
+msgctxt "This device is a Keyboard"
+msgid "Keyboard"
+msgstr "Klávesnica"
+
+#: package/contents/ui/Device.qml:172
+#, kde-format
+msgctxt "This device is a Mouse"
+msgid "Mouse"
+msgstr "Myš"
+
+#: package/contents/ui/Device.qml:174
+#, kde-format
+msgctxt "This device is a Joypad"
+msgid "Joypad"
+msgstr "Herný ovládač"
+
+#: package/contents/ui/Device.qml:176
+#, kde-format
+msgctxt "This device is a Graphics Tablet (input device)"
+msgid "Tablet"
+msgstr "Tablet"
+
+#: package/contents/ui/Device.qml:178
+#, kde-format
+msgctxt "This device is a Peripheral device"
+msgid "Peripheral"
+msgstr "Periférie"
+
+#: package/contents/ui/Device.qml:180
+#, kde-format
+msgctxt "This device is a Camera"
+msgid "Camera"
+msgstr "Kamera"
+
+#: package/contents/ui/Device.qml:182
+#, kde-format
+msgctxt "This device is a Printer"
+msgid "Printer"
+msgstr "Tlačiareň"
+
+#: package/contents/ui/Device.qml:184
+#, kde-format
+msgctxt ""
+"This device is an Imaging device (printer, scanner, camera, display, ...)"
+msgid "Imaging"
+msgstr "Obrázky"
+
+#: package/contents/ui/Device.qml:186
+#, kde-format
+msgctxt "This device is a Wearable"
+msgid "Wearable"
+msgstr "Wearable"
+
+#: package/contents/ui/Device.qml:188
+#, kde-format
+msgctxt "This device is a Toy"
+msgid "Toy"
+msgstr "Hračka"
+
+#: package/contents/ui/Device.qml:190
+#, kde-format
+msgctxt "This device is a Health device"
+msgid "Health"
+msgstr "Zdravie"
+
+#: package/contents/ui/Device.qml:192
+#, kde-format
+msgctxt "Type of device: could not be determined"
+msgid "Unknown"
+msgstr "Neznáme"
+
+#: package/contents/ui/General.qml:18
+#, kde-format
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: package/contents/ui/General.qml:27
+#, kde-format
+msgid "Device:"
+msgstr "Zariadenie:"
+
+#: package/contents/ui/General.qml:45
+#, kde-format
+msgid "Enabled:"
+msgstr "Povolené:"
+
+#: package/contents/ui/General.qml:51
+#, kde-format
+msgid "Visible:"
+msgstr "Viditeľný:"
+
+#: package/contents/ui/General.qml:65
+#, kde-format
+msgid "When receiving files:"
+msgstr "Pri prijatí súborov:"
+
+#: package/contents/ui/General.qml:67
+#, kde-format
+msgid "Ask for confirmation"
+msgstr "Pýtať sa na potvrdenie"
+
+#: package/contents/ui/General.qml:76
+#, kde-format
+msgid "Accept for trusted devices"
+msgstr "Pridať pre dôveryhodné zariadenia"
+
+#: package/contents/ui/General.qml:86
+#, kde-format
+msgid "Always accept"
+msgstr "Vždy prijať"
+
+#: package/contents/ui/General.qml:96
+#, kde-format
+msgid "Save files in:"
+msgstr "Uložiť súbory do:"
+
+#: package/contents/ui/General.qml:120 package/contents/ui/General.qml:131
+#, kde-format
+msgid "Select folder"
+msgstr "Vybrať priečinok"

@@ -1,0 +1,314 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the bluedevil package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kcm_bluetooth\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-21 02:49+0100\n"
+"PO-Revision-Date: 2021-01-20 06:06+0000\n"
+"Last-Translator: transxx.py program <null@kde.org>\n"
+"Language-Team: KDE Test Language <kde-i18n-doc@kde.org>\n"
+"Language: x-test\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "xxYour namesxx"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "xxYour emailsxx"
+
+#: bluetooth.cpp:26
+#, kde-format
+msgid "Bluetooth"
+msgstr "xxBluetoothxx"
+
+#: bluetooth.cpp:27
+#, kde-format
+msgid "Nicolas Fella"
+msgstr "xxNicolas Fellaxx"
+
+#: bluetooth.cpp:86
+#, kde-format
+msgctxt "DeviceName Network (Service)"
+msgid "%1 Network (%2)"
+msgstr "xx%1 Network (%2)xx"
+
+#: package/contents/ui/Bluetooth.qml:48
+#, kde-format
+msgid "No Bluetooth adapters found"
+msgstr "xxNo Bluetooth adapters foundxx"
+
+#: package/contents/ui/Bluetooth.qml:56
+#, kde-format
+msgid "Bluetooth is disabled"
+msgstr "xxBluetooth is disabledxx"
+
+#: package/contents/ui/Bluetooth.qml:62
+#, kde-format
+msgid "Enable"
+msgstr "xxEnablexx"
+
+#: package/contents/ui/Bluetooth.qml:71
+#, kde-format
+msgid "No devices paired"
+msgstr "xxNo devices pairedxx"
+
+#: package/contents/ui/Bluetooth.qml:92
+#, kde-format
+msgid "Connected"
+msgstr "xxConnectedxx"
+
+#: package/contents/ui/Bluetooth.qml:92
+#, kde-format
+msgid "Available"
+msgstr "xxAvailablexx"
+
+#: package/contents/ui/Bluetooth.qml:114 package/contents/ui/Device.qml:68
+#, kde-format
+msgid "Disconnect"
+msgstr "xxDisconnectxx"
+
+#: package/contents/ui/Bluetooth.qml:114 package/contents/ui/Device.qml:68
+#, kde-format
+msgid "Connect"
+msgstr "xxConnectxx"
+
+#: package/contents/ui/Bluetooth.qml:125
+#, kde-format
+msgid "Remove"
+msgstr "xxRemovexx"
+
+#: package/contents/ui/Bluetooth.qml:148
+#, kde-format
+msgid "Add..."
+msgstr "xxAdd...xx"
+
+#: package/contents/ui/Bluetooth.qml:156
+#, kde-format
+msgid "Disable Bluetooth"
+msgstr "xxDisable Bluetoothxx"
+
+#: package/contents/ui/Bluetooth.qml:169
+#, kde-format
+msgid "Configure..."
+msgstr "xxConfigure...xx"
+
+#: package/contents/ui/Device.qml:100
+#, kde-format
+msgid "Type:"
+msgstr "xxType:xx"
+
+#: package/contents/ui/Device.qml:105 package/contents/ui/General.qml:41
+#, kde-format
+msgid "Address:"
+msgstr "xxAddress:xx"
+
+#: package/contents/ui/Device.qml:110
+#, kde-format
+msgid "Adapter:"
+msgstr "xxAdapter:xx"
+
+#: package/contents/ui/Device.qml:116 package/contents/ui/General.qml:35
+#, kde-format
+msgid "Name:"
+msgstr "xxName:xx"
+
+#: package/contents/ui/Device.qml:120
+#, kde-format
+msgid "Trusted"
+msgstr "xxTrustedxx"
+
+#: package/contents/ui/Device.qml:126
+#, kde-format
+msgid "Blocked"
+msgstr "xxBlockedxx"
+
+#: package/contents/ui/Device.qml:132
+#, kde-format
+msgid "Send File"
+msgstr "xxSend Filexx"
+
+#: package/contents/ui/Device.qml:139
+#, kde-format
+msgid "Setup NAP Network..."
+msgstr "xxSetup NAP Network...xx"
+
+#: package/contents/ui/Device.qml:146
+#, kde-format
+msgid "Setup DUN Network..."
+msgstr "xxSetup DUN Network...xx"
+
+#: package/contents/ui/Device.qml:156
+#, kde-format
+msgctxt "This device is a Phone"
+msgid "Phone"
+msgstr "xxPhonexx"
+
+#: package/contents/ui/Device.qml:158
+#, kde-format
+msgctxt "This device is a Modem"
+msgid "Modem"
+msgstr "xxModemxx"
+
+#: package/contents/ui/Device.qml:160
+#, kde-format
+msgctxt "This device is a Computer"
+msgid "Computer"
+msgstr "xxComputerxx"
+
+#: package/contents/ui/Device.qml:162
+#, kde-format
+msgctxt "This device is of type Network"
+msgid "Network"
+msgstr "xxNetworkxx"
+
+#: package/contents/ui/Device.qml:164
+#, kde-format
+msgctxt "This device is a Headset"
+msgid "Headset"
+msgstr "xxHeadsetxx"
+
+#: package/contents/ui/Device.qml:166
+#, kde-format
+msgctxt "This device is a Headphones"
+msgid "Headphones"
+msgstr "xxHeadphonesxx"
+
+#: package/contents/ui/Device.qml:168
+#, kde-format
+msgctxt "This device is an Audio device"
+msgid "Audio"
+msgstr "xxAudioxx"
+
+#: package/contents/ui/Device.qml:170
+#, kde-format
+msgctxt "This device is a Keyboard"
+msgid "Keyboard"
+msgstr "xxKeyboardxx"
+
+#: package/contents/ui/Device.qml:172
+#, kde-format
+msgctxt "This device is a Mouse"
+msgid "Mouse"
+msgstr "xxMousexx"
+
+#: package/contents/ui/Device.qml:174
+#, kde-format
+msgctxt "This device is a Joypad"
+msgid "Joypad"
+msgstr "xxJoypadxx"
+
+#: package/contents/ui/Device.qml:176
+#, kde-format
+msgctxt "This device is a Graphics Tablet (input device)"
+msgid "Tablet"
+msgstr "xxTabletxx"
+
+#: package/contents/ui/Device.qml:178
+#, kde-format
+msgctxt "This device is a Peripheral device"
+msgid "Peripheral"
+msgstr "xxPeripheralxx"
+
+#: package/contents/ui/Device.qml:180
+#, kde-format
+msgctxt "This device is a Camera"
+msgid "Camera"
+msgstr "xxCameraxx"
+
+#: package/contents/ui/Device.qml:182
+#, kde-format
+msgctxt "This device is a Printer"
+msgid "Printer"
+msgstr "xxPrinterxx"
+
+#: package/contents/ui/Device.qml:184
+#, kde-format
+msgctxt ""
+"This device is an Imaging device (printer, scanner, camera, display, ...)"
+msgid "Imaging"
+msgstr "xxImagingxx"
+
+#: package/contents/ui/Device.qml:186
+#, kde-format
+msgctxt "This device is a Wearable"
+msgid "Wearable"
+msgstr "xxWearablexx"
+
+#: package/contents/ui/Device.qml:188
+#, kde-format
+msgctxt "This device is a Toy"
+msgid "Toy"
+msgstr "xxToyxx"
+
+#: package/contents/ui/Device.qml:190
+#, kde-format
+msgctxt "This device is a Health device"
+msgid "Health"
+msgstr "xxHealthxx"
+
+#: package/contents/ui/Device.qml:192
+#, kde-format
+msgctxt "Type of device: could not be determined"
+msgid "Unknown"
+msgstr "xxUnknownxx"
+
+#: package/contents/ui/General.qml:18
+#, kde-format
+msgid "Settings"
+msgstr "xxSettingsxx"
+
+#: package/contents/ui/General.qml:27
+#, kde-format
+msgid "Device:"
+msgstr "xxDevice:xx"
+
+#: package/contents/ui/General.qml:45
+#, kde-format
+msgid "Enabled:"
+msgstr "xxEnabled:xx"
+
+#: package/contents/ui/General.qml:51
+#, kde-format
+msgid "Visible:"
+msgstr "xxVisible:xx"
+
+#: package/contents/ui/General.qml:65
+#, kde-format
+msgid "When receiving files:"
+msgstr "xxWhen receiving files:xx"
+
+#: package/contents/ui/General.qml:67
+#, kde-format
+msgid "Ask for confirmation"
+msgstr "xxAsk for confirmationxx"
+
+#: package/contents/ui/General.qml:76
+#, kde-format
+msgid "Accept for trusted devices"
+msgstr "xxAccept for trusted devicesxx"
+
+#: package/contents/ui/General.qml:86
+#, kde-format
+msgid "Always accept"
+msgstr "xxAlways acceptxx"
+
+#: package/contents/ui/General.qml:96
+#, kde-format
+msgid "Save files in:"
+msgstr "xxSave files in:xx"
+
+#: package/contents/ui/General.qml:120 package/contents/ui/General.qml:131
+#, kde-format
+msgid "Select folder"
+msgstr "xxSelect folderxx"

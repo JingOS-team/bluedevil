@@ -1,0 +1,534 @@
+# translation of bluedevil.po to Français
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Joëlle Cornavin <jcorn@free.fr>, 2010, 2011, 2012.
+# Vincent PINON <vincent.pinon@st.com>, 2013, 2014.
+# Thomas Vergnaud <thomas.vergnaud@gmx.fr>, 2015, 2016.
+# Vincent Pinon <vpinon@kde.org>, 2016, 2017.
+# Simon Depiets <sdepiets@gmail.com>, 2018, 2019, 2020.
+# William Oprandi <william.oprandi@gmail.com>, 2020.
+# Xavier Besnard <xavier.besnard@neuf.fr>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bluedevil\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-27 03:12+0100\n"
+"PO-Revision-Date: 2020-12-29 07:59+0100\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
+"Language-Team: FR\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+"Joëlle Cornavin, Vincent Pinon, Thomas Vergnaud, Vincent Pinon, Simon Depiets"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+"jcorn@free.fr, vincent.pinon@laposte.net, thomas.vergnaud@gmx.fr, vpinon@kde."
+"org, sdepiets@gmail.com"
+
+#: kcm/bluetooth.cpp:26
+#, kde-format
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: kcm/bluetooth.cpp:27
+#, kde-format
+msgid "Nicolas Fella"
+msgstr "Nicolas Fella"
+
+#: kcm/bluetooth.cpp:86
+#, kde-format
+msgctxt "DeviceName Network (Service)"
+msgid "%1 Network (%2)"
+msgstr "Réseau %1 (%2)"
+
+#: kded/bluedevildaemon.cpp:68 kded/bluedevildaemon.cpp:70
+#, kde-format
+msgid "Bluetooth Daemon"
+msgstr "Démon Bluetooth"
+
+#: kded/bluedevildaemon.cpp:72 sendfile/main.cpp:28 wizard/main.cpp:29
+#, kde-format
+msgid "(c) 2010, UFO Coders"
+msgstr "(c) 2010, Les codeurs UFO"
+
+#: kded/bluedevildaemon.cpp:75 sendfile/main.cpp:31 wizard/main.cpp:32
+#, kde-format
+msgid "Maintainer"
+msgstr "Mainteneur"
+
+#: kded/bluedevildaemon.cpp:80 kded/bluedevildaemon.cpp:85 sendfile/main.cpp:36
+#: wizard/main.cpp:37
+#, kde-format
+msgid "Previous Maintainer"
+msgstr "Mainteneur précédent"
+
+#: kded/helpers/requestauthorization.cpp:29
+#, kde-format
+msgctxt ""
+"Show a notification asking to authorize or deny access to this computer from "
+"Bluetooth.The %1 is the name of the bluetooth device"
+msgid "%1 is requesting access to this computer"
+msgstr "%1 demande l'accès à cet ordinateur"
+
+#: kded/helpers/requestauthorization.cpp:33
+#, fuzzy, kde-format
+#| msgctxt ""
+#| "Button to trust a bluetooth remote device and authorize it to connect"
+#| msgid "Trust && Authorize"
+msgctxt "Button to trust a bluetooth remote device and authorize it to connect"
+msgid "Trust and Authorize"
+msgstr "Faire confiance et autoriser"
+
+#: kded/helpers/requestauthorization.cpp:34
+#, kde-format
+msgctxt "Button to authorize a bluetooth remote device to connect"
+msgid "Authorize Only"
+msgstr "Autoriser seulement"
+
+#: kded/helpers/requestauthorization.cpp:35
+#, kde-format
+msgctxt "Deny access to a remote bluetooth device"
+msgid "Deny"
+msgstr "Refuser"
+
+#: kded/helpers/requestconfirmation.cpp:28
+#, kde-format
+msgctxt ""
+"The text is shown in a notification to know if the PIN is correct,%1 is the "
+"remote bluetooth device and %2 is the pin"
+msgid "%1 is asking if the PIN is correct: %2"
+msgstr "%1 demande si le code PIN est correct : %2"
+
+#: kded/helpers/requestconfirmation.cpp:33
+#, kde-format
+msgctxt "Notification button to know if the pin is correct or not"
+msgid "PIN correct"
+msgstr "PIN correct"
+
+#: kded/helpers/requestconfirmation.cpp:34
+#, kde-format
+msgctxt "Notification button to say that the PIN is wrong"
+msgid "PIN incorrect"
+msgstr "PIN incorrect"
+
+#: kded/helpers/requestpin.cpp:36
+#, kde-format
+msgctxt ""
+"Shown in a notification to announce that a PIN is needed to accomplish a "
+"pair action,%1 is the name of the bluetooth device"
+msgid "PIN needed to pair with %1"
+msgstr "Le code PIN est nécessaire pour l'association à %1"
+
+#: kded/helpers/requestpin.cpp:40
+#, kde-format
+msgctxt ""
+"Notification button which once clicked, a dialog to introduce the PIN will "
+"be shown"
+msgid "Introduce PIN"
+msgstr "Introduire le code PIN"
+
+#: kded/helpers/requestpin.cpp:62
+#, kde-format
+msgctxt "Shown in the caption of a dialog where the user introduce the PIN"
+msgid "Introduce PIN"
+msgstr "Introduire le code PIN"
+
+#: kded/helpers/requestpin.cpp:69
+#, kde-format
+msgctxt ""
+"Shown in a dialog which asks to introduce a PIN that will be used to pair a "
+"Bluetooth device,%1 is the name of the Bluetooth device"
+msgid ""
+"In order to pair this computer with %1, you have to enter a PIN. Please do "
+"it below."
+msgstr ""
+"Pour pouvoir associer cet ordinateur à %1, vous devez saisir un code PIN. "
+"Veuillez le faire ci-dessous."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: kded/helpers/requestpin.ui:52
+#, kde-format
+msgid "PIN:"
+msgstr "PIN :"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, pin)
+#: kded/helpers/requestpin.ui:65
+#, kde-format
+msgid "1234"
+msgstr "1234"
+
+#: kded/receivefilejob.cpp:130
+#, kde-format
+msgctxt ""
+"Show a notification asking to authorize or deny an incoming file transfer to "
+"this computer from a Bluetooth device."
+msgid "%1 is sending you the file %2"
+msgstr "%1 vous envoie en ce moment le fichier %2"
+
+#: kded/receivefilejob.cpp:135
+#, kde-format
+msgctxt ""
+"Button to accept the incoming file transfer and download it in the default "
+"download directory"
+msgid "Accept"
+msgstr "Accepter"
+
+#: kded/receivefilejob.cpp:136
+#, kde-format
+msgctxt "Deny the incoming file transfer"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: kded/receivefilejob.cpp:162
+#, kde-format
+msgid "Receiving file over Bluetooth"
+msgstr "Réception d'un fichier via Bluetooth"
+
+#: kded/receivefilejob.cpp:163 sendfile/sendfilesjob.cpp:70
+#: sendfile/sendfilesjob.cpp:86
+#, kde-format
+msgctxt "File transfer origin"
+msgid "From"
+msgstr "Depuis"
+
+#: kded/receivefilejob.cpp:164 sendfile/sendfilesjob.cpp:71
+#: sendfile/sendfilesjob.cpp:87
+#, kde-format
+msgctxt "File transfer destination"
+msgid "To"
+msgstr "Vers"
+
+#: kded/receivefilejob.cpp:189
+#, kde-format
+msgid "Saving file failed"
+msgstr "Échec de l'enregistrement du fichier"
+
+#: kded/receivefilejob.cpp:224 kio/obexftp/transferfilejob.cpp:50
+#: sendfile/sendfilesjob.cpp:157
+#, kde-format
+msgid "Bluetooth transfer failed"
+msgstr "Échec du transfert Bluetooth"
+
+#: kio/bluetooth/kiobluetooth.cpp:45
+#, kde-format
+msgid "Send File"
+msgstr "Envoyer un fichier"
+
+#: kio/bluetooth/kiobluetooth.cpp:51
+#, kde-format
+msgid "Browse Files"
+msgstr "Explorer des fichiers"
+
+#: kio/bluetooth/kiobluetooth.cpp:65 kio/bluetooth/kiobluetooth.cpp:195
+#, kde-format
+msgid "No Bluetooth adapters have been found."
+msgstr "Aucun adaptateur Bluetooth n'a été trouvé. Veuillez en connecter un."
+
+#: kio/bluetooth/kiobluetooth.cpp:85
+#, kde-format
+msgid "Retrieving services..."
+msgstr "Réception des services..."
+
+#: kio/bluetooth/kiobluetooth.cpp:92
+#, kde-format
+msgid "This address is unavailable."
+msgstr "Cette adresse n'est pas disponible."
+
+#: kio/bluetooth/kiobluetooth.cpp:141
+#, kde-format
+msgid "Received Files"
+msgstr "Fichiers reçus"
+
+#: kio/bluetooth/kiobluetooth.cpp:161
+#, kde-format
+msgid "Scanning for new devices..."
+msgstr "Recherche de nouveaux périphériques..."
+
+#: kio/obexftp/kioobexftp.cpp:88
+#, kde-format
+msgid "Obexd service is not running."
+msgstr "Le service Obexd n'est pas en cours d'exécution."
+
+#: kio/obexftp/kioobexftp.cpp:134
+#, kde-format
+msgid "Retrieving information from remote device..."
+msgstr "Réception d'informations à partir du périphérique distant..."
+
+#: kio/obexftp/kioobexftp.cpp:217
+#, kde-format
+msgid "Connecting to the device"
+msgstr "Connexion au périphérique"
+
+#: kio/obexftp/kioobexftp.cpp:520
+#, kde-format
+msgid "Phone memory"
+msgstr "Mémoire du téléphone"
+
+#: kio/obexftp/kioobexftp.cpp:523
+#, kde-format
+msgid "External memory"
+msgstr "Mémoire externe"
+
+#: sendfile/discoverwidget.cpp:135 wizard/pages/discover.cpp:267
+#, kde-format
+msgid "Bluetooth is disabled."
+msgstr "Le Bluetooth est désactivé."
+
+#: sendfile/discoverwidget.cpp:136 wizard/pages/discover.cpp:268
+#, kde-format
+msgctxt "Action to enable Bluetooth adapter"
+msgid "Enable"
+msgstr "Activer"
+
+#: sendfile/discoverwidget.cpp:138
+#, kde-format
+msgid "Your Bluetooth adapter is powered off."
+msgstr "Votre adaptateur Bluetooth est éteint."
+
+#: sendfile/discoverwidget.cpp:139
+#, kde-format
+msgctxt "Action to turn on Bluetooth adapter"
+msgid "Turn On"
+msgstr "Allumer"
+
+#: sendfile/main.cpp:24 sendfile/main.cpp:26
+#, kde-format
+msgid "Bluetooth Send File Wizard"
+msgstr "Assistant d'envoi de fichier par Bluetooth"
+
+#: sendfile/main.cpp:48
+#, kde-format
+msgid "Specify receiving device by MAC address."
+msgstr "Spécifier un appareil récepteur par le biais de l'adresse MAC."
+
+#: sendfile/main.cpp:52
+#, kde-format
+msgid "Specify receiving device by UBI path."
+msgstr "Spécifier un appareil récepteur par le biais de l'emplacement « UBI »."
+
+#: sendfile/main.cpp:56
+#, kde-format
+msgid "Files to be sent."
+msgstr "Les fichiers à envoyer."
+
+#: sendfile/pages/connectingpage.cpp:32 wizard/pages/connect.cpp:40
+#, kde-format
+msgctxt "Connecting to a Bluetooth device"
+msgid "Connecting to %1..."
+msgstr "Connexion à %1 en cours..."
+
+#: sendfile/pages/failpage.cpp:43
+#, kde-format
+msgctxt "This string is shown when the wizard fail"
+msgid "The connection to the device has failed"
+msgstr "La connexion au périphérique a échoué"
+
+#: sendfile/pages/failpage.cpp:45
+#, kde-format
+msgid "The connection to %1 has failed"
+msgstr "La connexion à %1 a échoué"
+
+#: sendfile/pages/selectdeviceandfilespage.cpp:53
+#, kde-format
+msgid "Open file..."
+msgstr "Ouvrir un fichier…"
+
+#. i18n: ectx: property (text), widget (KSqueezedTextLabel, selectLbl)
+#: sendfile/pages/selectdeviceandfilespage.cpp:58
+#: sendfile/pages/selectfilediscover.ui:99
+#, kde-format
+msgid "Select one or more files:"
+msgstr "Sélectionnez un ou plusieurs fichiers :"
+
+#: sendfile/pages/selectdeviceandfilespage.cpp:65
+#, kde-format
+msgid "Selected files: <b>%1</b>"
+msgstr "Fichiers sélectionnés : <b>%1</b>"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: sendfile/pages/selectfilediscover.ui:38
+#, kde-format
+msgid "Select a device from the list:"
+msgstr "Sélectionnez un périphérique dans la liste :"
+
+#: sendfile/pages/selectfilespage.cpp:46
+#, kde-format
+msgctxt "Send files to a Bluetooth device"
+msgid "Send to %1"
+msgstr "Envoyer à %1"
+
+#: sendfile/sendfilesjob.cpp:69 sendfile/sendfilesjob.cpp:85
+#, kde-format
+msgid "Sending file over Bluetooth"
+msgstr "Envoi d'un fichier via Bluetooth"
+
+#: sendfile/sendfilewizard.cpp:41
+#, kde-format
+msgid "Send Files"
+msgstr "Envoyer des fichiers"
+
+#: sendfile/sendfilewizard.cpp:42
+#, kde-format
+msgid "Cancel"
+msgstr "Annuler"
+
+#. i18n: ectx: label, entry (saveUrl), group (General)
+#: settings/filereceiver.kcfg:11
+#, kde-format
+msgid "Save received files to:"
+msgstr "Enregistrer les fichiers reçus dans :"
+
+#. i18n: ectx: label, entry (autoAccept), group (General)
+#: settings/filereceiver.kcfg:15
+#, kde-format
+msgid "Whether allow to modify shared files"
+msgstr ""
+"Décider s'il faut ou non autoriser la modification de fichiers partagés"
+
+#: wizard/bluewizard.cpp:57
+#, kde-format
+msgctxt "Action to go to the next page on the wizard"
+msgid "Next"
+msgstr "Suivant"
+
+#: wizard/bluewizard.cpp:58
+#, kde-format
+msgctxt "Action to finish the wizard"
+msgid "Finish"
+msgstr "Terminer"
+
+#: wizard/main.cpp:25 wizard/main.cpp:27
+#, kde-format
+msgid "Bluetooth Device Wizard"
+msgstr "Assistant de connexion de périphérique Bluetooth"
+
+#: wizard/pages/discover.cpp:104
+#, kde-format
+msgid "Select a device"
+msgstr "Sélectionnez un périphérique"
+
+#: wizard/pages/discover.cpp:260
+#, kde-format
+msgctxt "Action to fix a problem"
+msgid "Fix it"
+msgstr "Corriger ce problème"
+
+#: wizard/pages/discover.cpp:270
+#, kde-format
+msgid "Your Bluetooth adapter is not pairable."
+msgstr "Votre adaptateur Bluetooth n'est pas appairable."
+
+#: wizard/pages/discover.cpp:271
+#, kde-format
+msgctxt "Action to make Bluetooth adapter pairable"
+msgid "Make Pairable"
+msgstr "Rendre appairable"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: wizard/pages/discover.ui:54
+#, kde-format
+msgid "Scanning..."
+msgstr "Analyse en cours..."
+
+#. i18n: ectx: property (text), widget (QCheckBox, manualPin)
+#: wizard/pages/discover.ui:74
+#, kde-format
+msgid "Manual PIN:"
+msgstr "PIN manuel :"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, pinText)
+#: wizard/pages/discover.ui:102
+#, kde-format
+msgid "0000"
+msgstr "0000"
+
+#: wizard/pages/fail.cpp:37
+#, kde-format
+msgctxt ""
+"Button offered when the wizard fail. This button will restart the wizard"
+msgid "Restart the wizard"
+msgstr "Redémarrer l'assistant"
+
+#: wizard/pages/fail.cpp:41
+#, kde-format
+msgctxt "Button that closes the wizard"
+msgid "Close"
+msgstr "Fermer"
+
+#: wizard/pages/fail.cpp:53
+#, kde-format
+msgctxt "This string is shown when the wizard fail"
+msgid "The setup of the device has failed"
+msgstr "La configuration du périphérique a échoué"
+
+#: wizard/pages/fail.cpp:55
+#, kde-format
+msgid "The setup of %1 has failed"
+msgstr "La configuration de %1 a échoué"
+
+#: wizard/pages/pairing.cpp:60
+#, kde-format
+msgid "Connecting to %1..."
+msgstr "Connexion à %1..."
+
+#: wizard/pages/pairing.cpp:91
+#, kde-format
+msgid ""
+"Please introduce the PIN in your keyboard when it appears and press Enter"
+msgstr ""
+"Veuillez introduire le PIN dans votre clavier lorsqu'il apparaît et appuyer "
+"sur Entrée"
+
+#: wizard/pages/pairing.cpp:93
+#, kde-format
+msgid "Please introduce the PIN in your device when it appears"
+msgstr "Veuillez introduire le PIN dans votre périphérique lorsqu'il apparaît"
+
+#: wizard/pages/pairing.cpp:111
+#, kde-format
+msgid "Matches"
+msgstr "Correspond"
+
+#: wizard/pages/pairing.cpp:115
+#, kde-format
+msgid "Does not match"
+msgstr "Ne correspond pas"
+
+#: wizard/pages/pairing.cpp:130
+#, kde-format
+msgid "Please, confirm that the PIN displayed on %1 matches the wizard one."
+msgstr ""
+"Veuillez confirmer que le code PIN affiché sur « %1 » correspond à celui de "
+"l'assistant."
+
+#: wizard/pages/success.cpp:40
+#, kde-format
+msgid "Setup Finished"
+msgstr "Configuration terminée"
+
+#: wizard/pages/success.cpp:42
+#, kde-format
+msgid "The device has been set up and can now be used."
+msgstr "Le périphérique a été configuré, vous pouvez désormais l'utiliser."
+
+#: wizard/pages/success.cpp:44
+#, kde-format
+msgctxt "Placeholder is device name"
+msgid "The device '%1' has been set up and can now be used."
+msgstr ""
+"Le périphérique « %1 » a été configuré, vous pouvez désormais l'utiliser."

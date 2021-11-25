@@ -19,6 +19,7 @@ target_link_libraries(kcm_bluetooth
     KF5::I18n
     KF5::BluezQt 
     KF5::Notifications
+    KF5::ConfigCore
     )
 kcoreaddons_desktop_to_json(kcm_bluetooth "package/metadata.desktop")
 

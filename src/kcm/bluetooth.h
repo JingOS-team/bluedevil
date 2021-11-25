@@ -21,6 +21,7 @@
 
 #include <BluezQt/Agent>
 #include "bluetoothagent.h"
+#include <QDBusMessage>
 
 class Bluetooth : public KQuickAddons::ConfigModule
 {
@@ -42,10 +43,14 @@ public:
     Q_INVOKABLE void setName(const QString address,const QString name);
     Q_INVOKABLE void connectToDevice(const QString  connAddress, const QString address);
     Q_INVOKABLE void setAdatporCoverable(const bool visible);
+    Q_INVOKABLE void setAdatporDiscovery(const bool visible);
+    Q_INVOKABLE bool getAdatporCoverable();
     Q_INVOKABLE QString getLocalDeviceName();
     Q_INVOKABLE void setLocalDeviceName(const QString localName);
     Q_INVOKABLE void stopMediaPlayer(const QString address);
     Q_INVOKABLE void setBluetoothEnabled(const bool isEnable);
+    Q_INVOKABLE void refreshDiscovery();
+    Q_INVOKABLE void connectionStateChange(const bool status);
     
 
 Q_SIGNALS:
@@ -59,6 +64,7 @@ Q_SIGNALS:
     void connectedStateChangedToQml(bool connected,QString address);
     void removeDeviceFinishedToQml();
     void disconnectDeviceFinishedToQml();
+    void poweredChangedToQml(bool powered);
 
 private Q_SLOTS:
     void initJobResult(BluezQt::InitManagerJob *job);
@@ -69,14 +75,16 @@ private Q_SLOTS:
     void disconnectFromDeviceFinished(BluezQt::PendingCall *call);
     void mediaPlayerStopFinish(BluezQt::PendingCall *call);
     void powerOnCall(BluezQt::PendingCall *call);
+    void stopDiscoveryFinish(BluezQt::PendingCall *call);
     void pairingSuccess();
     void pairingFailed(const int errorCode);
-    void pinRequested(const QString &pin);
-    void confirmationRequested(const QString &passkey, const BluezQt::Request<> &req);
+    void pinRequested(const BluezQt::DevicePtr device, const QString &pin);
+    void confirmationRequested(const BluezQt::DevicePtr device, const QString &passkey, const BluezQt::Request<> &req);
     void bluetoothBlockedChanged(bool blocked);
     void connectedStateChanged(bool connected);
     void removeDeviceFinished(BluezQt::PendingCall *call);
-    
+    void poweredChanged(bool powered);
+    void cancelAgent();
 
 private:
     void checkNetworkInternal(const QString &service, const QString &address);
@@ -90,6 +98,7 @@ private:
     QString m_address;
     QString m_localDeviceName;
     bool m_cancel;
+    mutable QDBusMessage m_dbusMessage;
 };
 
 #endif // BLUETOOTHKCM_H

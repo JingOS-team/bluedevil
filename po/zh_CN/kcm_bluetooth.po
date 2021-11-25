@@ -275,7 +275,7 @@ msgstr "取消"
 #: src/kcm/package/contents/ui/Home.qml:279
 #: src/kcm/package/contents/ui/JScanner.qml:333
 #, kde-format
-msgid "Ok"
+msgid "OK"
 msgstr "确定"
 
 #: src/kcm/package/contents/ui/Device.qml:100
@@ -504,7 +504,7 @@ msgstr "配对时间太长。请确定\"%1\"已打开，在通信范围内，且
 
 #: src/kcm/package/contents/ui/JScanner.qml:238
 #, kde-format
-msgid "On connection"
+msgid "On Connection"
 msgstr "连接中"
 
 #: src/kcm/package/contents/ui/JScanner.qml:238
@@ -514,7 +514,7 @@ msgstr "已连接"
 
 #: src/kcm/package/contents/ui/JScanner.qml:238
 #, kde-format
-msgid "Not connected"
+msgid "Not Connected"
 msgstr "未连接"
 
 #: src/kcm/package/contents/ui/JScanner.qml:313
@@ -914,8 +914,9 @@ msgstr ""
 msgid "Please, confirm that the PIN displayed on %1 matches the wizard one."
 msgstr ""
 
-msgid "Other devices will see this name when you use Bluetooth,WLAN Direct,Personal hotspot and USB."
-msgstr "当您使用蓝牙，WLAN直连，个人热点和USB时，其他设备会看到此名称。"
+msgid "Other devices will see this name when you use Bluetooth and USB."
+msgstr "当您使用蓝牙和USB时，其他设备会看到此名称。"
+
 msgid "On"
 msgstr "开"
 
@@ -936,4 +937,10 @@ msgstr "忽略"
 
 msgid "\"%2\" would like to pair with your iPad. Enter the code \"%1\" on \"%2\""
 msgstr "\"%2\"想与您的iPad进行配对.请在\"%2\"输入代码\"%1\""
+
+msgid "Do not turn off Bluetooth during the connection"
+msgstr "在连接过程中禁止关闭蓝牙"
+
+msgid "Bluetooth is turning off and cannot be turned on"
+msgstr "蓝牙正在关闭中，不允许打开"
 

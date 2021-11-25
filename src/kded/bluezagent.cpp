@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2010 Eduardo Robles Elvira <edulix@gmail.com>
  *   SPDX-FileCopyrightText: 2010 UFO Coders <info@ufocoders.com>
  *   SPDX-FileCopyrightText: 2014-2015 David Rosca <nowrep@gmail.com>
+ *   SPDX-FileCopyrightText: 2021 Liu Bangguo <liubangguo@jingos.com>
  *
  *   SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -80,7 +81,6 @@ void BluezAgent::requestPinCode(BluezQt::DevicePtr device, const BluezQt::Reques
 void BluezAgent::requestPasskey(BluezQt::DevicePtr device, const BluezQt::Request<quint32> &request)
 {
     qCDebug(BLUEDAEMON) << "AGENT-RequestPasskey " << device->name();
-    qDebug() << "0000000000" ;
 
     RequestPin *helper = new RequestPin(device, true, this);
     connect(helper, &RequestPin::done, this, [request](const QString &result) {
@@ -99,7 +99,7 @@ void BluezAgent::requestPasskey(BluezQt::DevicePtr device, const BluezQt::Reques
 
 void BluezAgent::requestConfirmation(BluezQt::DevicePtr device, const QString &passkey, const BluezQt::Request<> &request)
 {
-    qCDebug(BLUEDAEMON) << "...................AGENT-RequestConfirmation " << device->name() << passkey;
+    qCDebug(BLUEDAEMON) << "AGENT-RequestConfirmation " << device->name() << passkey;
 
     RequestConfirmation *helper = new RequestConfirmation(device, passkey, this);
     connect(helper, &RequestConfirmation::done, this, [request](RequestConfirmation::Result result) {

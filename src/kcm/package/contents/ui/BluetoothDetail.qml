@@ -1,13 +1,17 @@
-/**
- * SPDX-FileCopyrightText: 2021 Wang Rui <wangrui@jingos.com>
- *                         
- * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+/*
+ * Copyright (C) 2021 Beijing Jingling Information System Technology Co., Ltd. All rights reserved.
+ *
+ * Authors:
+ * Liu Bangguo <liubangguo@jingos.com>
+ *
  */
+
  
 import QtQuick 2.0
 import QtQuick.Controls 2.5
 import org.kde.kirigami 2.15 as Kirigami
 import QtQuick.Layouts 1.11
+import jingos.display 1.0
 
 Rectangle {
     id: detail
@@ -17,10 +21,12 @@ Rectangle {
     property bool isConnected
     property bool isRemoving: false
     property bool isDisconnecting: false
+    property var deviceType
+    property bool supportDisconnect: deviceType == 0 | deviceType == 2 | deviceType == 5
 
     anchors.fill: parent
 
-    color: "#FFF6F9FF"
+    color: settingMinorBackground
 
     Connections {
         target: kcm
@@ -40,50 +46,46 @@ Rectangle {
         id: tile
 
         anchors {
-            top: parent.top
             left: parent.left
+            leftMargin: 20 * appScaleSize
             right: parent.right
-            topMargin: 48 * appScale
-            leftMargin: 14 * appScale
-            rightMargin: 20 * appScale
+            rightMargin:  20 * appScaleSize
+            top: parent.top
+            topMargin:  JDisplay.statusBarHeight
         }
 
-        width: parent.width
-        height: 20 * appScale
+        width: parent.width //childrenRect.width
+        height: 62 * appScaleSize
+        Item {
+            width: parent.width
+            height: icon_back.height
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 6 * appScaleSize
+            Kirigami.JIconButton {
+                id: icon_back
 
-        Image {
-            id: icon_back
-            
-            anchors {
-                left: parent.left
-                verticalCenter: parent.verticalCenter
-            }
+                width: (22 + 8) * appScaleSize
+                height: (22 + 8) * appScaleSize
 
-            width: 22 * appScale
-            height: 22 * appScale
+                source: isDarkTheme ? Qt.resolvedUrl("../image/icon_back_dark.png") : Qt.resolvedUrl("../image/icon_back.png")
 
-            source: "../image/icon_back.png"
-
-            MouseArea {
-                anchors.fill: parent
                 onClicked: {
                     popView()
                 }
             }
-        }
 
-        Text {
-            anchors.left: icon_back.right
-            anchors.leftMargin: 10 * appScale
-            anchors.verticalCenter: parent.verticalCenter
+            Text {
+                anchors.left: icon_back.right
+                anchors.leftMargin: 10 * appScaleSize
+                anchors.verticalCenter: parent.verticalCenter
+                font.bold: true
 
-            width: parent.width / 2
-
-            font.bold: true
-            font.pixelSize: 20
-            text: detail.name
-            elide: Text.ElideRight
-            horizontalAlignment: Text.AlignLeft
+                font.pixelSize: 20 * appFontSize
+                text: detail.name
+                elide: Text.ElideRight
+                horizontalAlignment: Text.AlignLeft
+                color: majorForeground
+            }
         }
     }
 
@@ -94,47 +96,49 @@ Rectangle {
             top: tile.bottom
             left: parent.left
             right: parent.right
-            leftMargin: 20 * appScale
-            rightMargin: 20 * appScale
-            topMargin: 18 * appScale
+            leftMargin: 20 * appScaleSize
+            rightMargin: 20 * appScaleSize
+            topMargin: 11 * appScaleSize
         }
 
-        height: 45 * appScale
-        radius: 10 * appScale
+        height: 45 * appScaleSize
+        radius: 10 * appScaleSize
 
-        color: "white"
+        color: cardBackground
 
         Item {
             anchors.left: parent.left
             anchors.right: parent.right
 
             width: parent.width
-            height: 45 * appScale
+            height: 45 * appScaleSize
 
             Text {
                 anchors {
                     left: parent.left
                     verticalCenter: parent.verticalCenter
-                    leftMargin: 20 * appScale
+                    leftMargin: 20 * appScaleSize
                 }
 
                 text: i18n("Name")
-                font.pixelSize: 14
+                font.pixelSize: 14 * appFontSize
+                color: majorForeground
             }
 
             Text {
                 anchors {
                     right: edit_name.left
                     verticalCenter: parent.verticalCenter
-                    rightMargin: 25 * appScale
+                    rightMargin: 25 * appScaleSize
                 }
 
                 width: parent.width / 3
 
                 text: detail.name
-                font.pixelSize: 14
+                font.pixelSize: 14 * appFontSize
                 elide: Text.ElideRight
                 horizontalAlignment: Text.AlignRight
+                color: isDarkTheme ? "#8CF7F7F7" : "#99000000"
             }
 
             Image {
@@ -143,11 +147,11 @@ Rectangle {
                 anchors {
                     right: parent.right
                     verticalCenter: parent.verticalCenter
-                    rightMargin: 20 * appScale
+                    rightMargin: 20 * appScaleSize
                 }
 
-                width: 22 * appScale
-                height: 22 * appScale
+                width: 22 * appScaleSize
+                height: 22 * appScaleSize
 
                 source: "../image/edit_name.png"
 
@@ -169,23 +173,23 @@ Rectangle {
             top: nameRect.bottom
             left: parent.left
             right: parent.right
-            topMargin: 24 * appScale
-            leftMargin: 20 * appScale
-            rightMargin: 20 * appScale
+            topMargin: 24 * appScaleSize
+            leftMargin: 20 * appScaleSize
+            rightMargin: 20 * appScaleSize
         }
 
-        height: isConnected ? 90 * appScale : 45 * appScale
+        height: isConnected && supportDisconnect ? 90 * appScaleSize : 45 * appScaleSize
 
-        radius: 10 * appScale
-        color: "white"
+        radius: 10 * appScaleSize
+        color: cardBackground
 
         Item {
             id: state
 
             width: parent.width
-            height: isConnected ? 45 * appScale : 0
+            height: isConnected && supportDisconnect ? 45 * appScaleSize : 0
 
-            visible: isConnected
+            visible: isConnected && supportDisconnect
 
             Text {
                 id: disconnectText
@@ -193,12 +197,12 @@ Rectangle {
                 anchors {
                     left: parent.left
                     verticalCenter: parent.verticalCenter
-                    leftMargin: 20 * appScale
+                    leftMargin: 20 * appScaleSize
                 }
 
                 text: i18n("Disconnect")
-                color: "#FF3C4BE8"
-                font.pixelSize: 14
+                color: highlightColor
+                font.pixelSize: 14 * appFontSize
             }
 
             Image {
@@ -206,12 +210,12 @@ Rectangle {
 
                 anchors {
                     left: disconnectText.right
-                    leftMargin: 10 * appScale
+                    leftMargin: 10 * appScaleSize
                     verticalCenter: parent.verticalCenter
                 }
 
-                width: 22 * appScale
-                height: 22 * appScale
+                width: 22 * appScaleSize
+                height: 22 * appScaleSize
 
                 visible: isDisconnecting
                 source: "../image/scan.png"
@@ -230,15 +234,15 @@ Rectangle {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    leftMargin: 20 * appScale
-                    rightMargin: 20 * appScale
+                    leftMargin: 20 * appScaleSize
+                    rightMargin: 20 * appScaleSize
                     bottom: parent.bottom
                 }
 
                 width: parent.width
                 height: 1
 
-                color: "#FFE5E5EA"
+                color: dividerForeground
                 visible: isConnected
             }
 
@@ -258,7 +262,7 @@ Rectangle {
             anchors.top: state.bottom
 
             width: parent.width
-            height: 45 * appScale
+            height: 45 * appScaleSize
 
             Text {
                 id: removeText
@@ -266,12 +270,12 @@ Rectangle {
                 anchors {
                     left: parent.left
                     verticalCenter: parent.verticalCenter
-                    leftMargin: 20 * appScale
+                    leftMargin: 20 * appScaleSize
                 }
 
                 text: i18n("Forget This Device")
-                color: "#FF3C4BE8"
-                font.pixelSize: 14
+                color: highlightColor
+                font.pixelSize: 14 * appFontSize
             }
 
             Image {
@@ -279,12 +283,12 @@ Rectangle {
 
                 anchors {
                     left: removeText.right
-                    leftMargin: 10 * appScale
+                    leftMargin: 10 * appScaleSize
                     verticalCenter: parent.verticalCenter
                 }
 
-                width: 22 * appScale
-                height: 22 * appScale
+                width: 22 * appScaleSize
+                height: 22 * appScaleSize
 
                 visible: isRemoving
                 source: "../image/scan.png"
@@ -342,15 +346,21 @@ Rectangle {
         text: "blank"
         showPassword: false
         leftButtonText: i18n("Cancel")
-        rightButtonText: i18n("Ok")
+        rightButtonText: i18n("OK")
         textItem: textItem
 
+        onInputTextChanged:{
+            if(inputText.length > 32){
+                inputDialog.inputText = inputText.substring(0,32)
+            }
+        }
+        
         onRightButtonClicked: {
             if (inputDialog.inputText.length != 0) {
                 kcm.setName(address, inputDialog.inputText)
                 detail.name = inputDialog.inputText
-                inputDialog.visible = false
             }
+            inputDialog.visible = false
         }
 
         onLeftButtonClicked: {

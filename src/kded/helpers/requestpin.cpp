@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2010 Eduardo Robles Elvira <edulix@gmail.com>
  *   SPDX-FileCopyrightText: 2010 UFO Coders <info@ufocoders.com>
  *   SPDX-FileCopyrightText: 2014-2015 David Rosca <nowrep@gmail.com>
+ *   SPDX-FileCopyrightText: 2021 Liu Bangguo <liubangguo@jingos.com>
  *
  *   SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -29,7 +30,7 @@ RequestPin::RequestPin(BluezQt::DevicePtr device, bool numeric, QObject *parent)
     m_notification = new KNotification(QStringLiteral("RequestPin"), KNotification::Persistent, this);
 
     m_notification->setComponentName(QStringLiteral("bluedevil"));
-    m_notification->setTitle(QStringLiteral("%1 (... %2)").arg(m_device->name().toHtmlEscaped(), m_device->address().toHtmlEscaped()));
+    m_notification->setTitle(QStringLiteral("%1 (%2)").arg(m_device->name().toHtmlEscaped(), m_device->address().toHtmlEscaped()));
     m_notification->setText(
         i18nc("Shown in a notification to announce that a PIN is needed to accomplish a pair action,"
               "%1 is the name of the bluetooth device",
@@ -51,7 +52,6 @@ RequestPin::RequestPin(BluezQt::DevicePtr device, bool numeric, QObject *parent)
 
 void RequestPin::introducePin()
 {
-    qDebug() << "-------------introducePin";
     m_notification->disconnect();
     m_notification->close();
     m_notification->deleteLater();

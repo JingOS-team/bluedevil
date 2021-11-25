@@ -1,0 +1,316 @@
+# Spanish translations for kcm_bluetooth.po package.
+# Copyright (C) 2020 This file is copyright:
+# This file is distributed under the same license as the bluedevil package.
+#
+# Automatically generated, 2020.
+# Eloy Cuadra <ecuadra@eloihr.net>, 2020, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kcm_bluetooth\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-21 02:49+0100\n"
+"PO-Revision-Date: 2021-01-20 11:19+0100\n"
+"Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
+"Language-Team: Spanish <kde-l10n-es@kde.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 20.12.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Eloy Cuadra"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "ecuadra@eloihr.net"
+
+#: bluetooth.cpp:26
+#, kde-format
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: bluetooth.cpp:27
+#, kde-format
+msgid "Nicolas Fella"
+msgstr "Nicolas Fella"
+
+#: bluetooth.cpp:86
+#, kde-format
+msgctxt "DeviceName Network (Service)"
+msgid "%1 Network (%2)"
+msgstr "Red %1 (%2)"
+
+#: package/contents/ui/Bluetooth.qml:48
+#, kde-format
+msgid "No Bluetooth adapters found"
+msgstr "No se han encontrado adaptadores Bluetooth"
+
+#: package/contents/ui/Bluetooth.qml:56
+#, kde-format
+msgid "Bluetooth is disabled"
+msgstr "Bluetooth está desactivado"
+
+#: package/contents/ui/Bluetooth.qml:62
+#, kde-format
+msgid "Enable"
+msgstr "Activar"
+
+#: package/contents/ui/Bluetooth.qml:71
+#, kde-format
+msgid "No devices paired"
+msgstr "No hay dispositivos vinculados"
+
+#: package/contents/ui/Bluetooth.qml:92
+#, kde-format
+msgid "Connected"
+msgstr "Conectado"
+
+#: package/contents/ui/Bluetooth.qml:92
+#, kde-format
+msgid "Available"
+msgstr "Disponible"
+
+#: package/contents/ui/Bluetooth.qml:114 package/contents/ui/Device.qml:68
+#, kde-format
+msgid "Disconnect"
+msgstr "Desconectar"
+
+#: package/contents/ui/Bluetooth.qml:114 package/contents/ui/Device.qml:68
+#, kde-format
+msgid "Connect"
+msgstr "Conectar"
+
+#: package/contents/ui/Bluetooth.qml:125
+#, kde-format
+msgid "Remove"
+msgstr "Eliminar"
+
+#: package/contents/ui/Bluetooth.qml:148
+#, kde-format
+msgid "Add..."
+msgstr "Añadir..."
+
+#: package/contents/ui/Bluetooth.qml:156
+#, kde-format
+msgid "Disable Bluetooth"
+msgstr "Desactivar Bluetooth"
+
+#: package/contents/ui/Bluetooth.qml:169
+#, kde-format
+msgid "Configure..."
+msgstr "Configurar..."
+
+#: package/contents/ui/Device.qml:100
+#, kde-format
+msgid "Type:"
+msgstr "Tipo:"
+
+#: package/contents/ui/Device.qml:105 package/contents/ui/General.qml:41
+#, kde-format
+msgid "Address:"
+msgstr "Dirección:"
+
+#: package/contents/ui/Device.qml:110
+#, kde-format
+msgid "Adapter:"
+msgstr "Adaptador:"
+
+#: package/contents/ui/Device.qml:116 package/contents/ui/General.qml:35
+#, kde-format
+msgid "Name:"
+msgstr "Nombre:"
+
+#: package/contents/ui/Device.qml:120
+#, kde-format
+msgid "Trusted"
+msgstr "De confianza"
+
+#: package/contents/ui/Device.qml:126
+#, kde-format
+msgid "Blocked"
+msgstr "Bloqueado"
+
+#: package/contents/ui/Device.qml:132
+#, kde-format
+msgid "Send File"
+msgstr "Enviar archivo"
+
+#: package/contents/ui/Device.qml:139
+#, kde-format
+msgid "Setup NAP Network..."
+msgstr "Configurar red NAP..."
+
+#: package/contents/ui/Device.qml:146
+#, kde-format
+msgid "Setup DUN Network..."
+msgstr "Configurar red DUN..."
+
+#: package/contents/ui/Device.qml:156
+#, kde-format
+msgctxt "This device is a Phone"
+msgid "Phone"
+msgstr "Teléfono"
+
+#: package/contents/ui/Device.qml:158
+#, kde-format
+msgctxt "This device is a Modem"
+msgid "Modem"
+msgstr "Módem"
+
+#: package/contents/ui/Device.qml:160
+#, kde-format
+msgctxt "This device is a Computer"
+msgid "Computer"
+msgstr "Computador"
+
+#: package/contents/ui/Device.qml:162
+#, kde-format
+msgctxt "This device is of type Network"
+msgid "Network"
+msgstr "Red"
+
+#: package/contents/ui/Device.qml:164
+#, kde-format
+msgctxt "This device is a Headset"
+msgid "Headset"
+msgstr "Cascos"
+
+#: package/contents/ui/Device.qml:166
+#, kde-format
+msgctxt "This device is a Headphones"
+msgid "Headphones"
+msgstr "Auriculares"
+
+#: package/contents/ui/Device.qml:168
+#, kde-format
+msgctxt "This device is an Audio device"
+msgid "Audio"
+msgstr "Sonido"
+
+#: package/contents/ui/Device.qml:170
+#, kde-format
+msgctxt "This device is a Keyboard"
+msgid "Keyboard"
+msgstr "Teclado"
+
+#: package/contents/ui/Device.qml:172
+#, kde-format
+msgctxt "This device is a Mouse"
+msgid "Mouse"
+msgstr "Ratón"
+
+#: package/contents/ui/Device.qml:174
+#, kde-format
+msgctxt "This device is a Joypad"
+msgid "Joypad"
+msgstr "Mando de videojuegos"
+
+#: package/contents/ui/Device.qml:176
+#, kde-format
+msgctxt "This device is a Graphics Tablet (input device)"
+msgid "Tablet"
+msgstr "Tableta"
+
+#: package/contents/ui/Device.qml:178
+#, kde-format
+msgctxt "This device is a Peripheral device"
+msgid "Peripheral"
+msgstr "Periférico"
+
+#: package/contents/ui/Device.qml:180
+#, kde-format
+msgctxt "This device is a Camera"
+msgid "Camera"
+msgstr "Cámara"
+
+#: package/contents/ui/Device.qml:182
+#, kde-format
+msgctxt "This device is a Printer"
+msgid "Printer"
+msgstr "Impresora"
+
+#: package/contents/ui/Device.qml:184
+#, kde-format
+msgctxt ""
+"This device is an Imaging device (printer, scanner, camera, display, ...)"
+msgid "Imaging"
+msgstr "Dispositivos de imagen"
+
+#: package/contents/ui/Device.qml:186
+#, kde-format
+msgctxt "This device is a Wearable"
+msgid "Wearable"
+msgstr "Tecnología vestible"
+
+#: package/contents/ui/Device.qml:188
+#, kde-format
+msgctxt "This device is a Toy"
+msgid "Toy"
+msgstr "Juguete digital"
+
+#: package/contents/ui/Device.qml:190
+#, kde-format
+msgctxt "This device is a Health device"
+msgid "Health"
+msgstr "Dispositivo de salud"
+
+#: package/contents/ui/Device.qml:192
+#, kde-format
+msgctxt "Type of device: could not be determined"
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: package/contents/ui/General.qml:18
+#, kde-format
+msgid "Settings"
+msgstr "Preferencias"
+
+#: package/contents/ui/General.qml:27
+#, kde-format
+msgid "Device:"
+msgstr "Dispositivo:"
+
+#: package/contents/ui/General.qml:45
+#, kde-format
+msgid "Enabled:"
+msgstr "Activado:"
+
+#: package/contents/ui/General.qml:51
+#, kde-format
+msgid "Visible:"
+msgstr "Visible:"
+
+#: package/contents/ui/General.qml:65
+#, kde-format
+msgid "When receiving files:"
+msgstr "Al recibir archivos:"
+
+#: package/contents/ui/General.qml:67
+#, kde-format
+msgid "Ask for confirmation"
+msgstr "Solicitar confirmación"
+
+#: package/contents/ui/General.qml:76
+#, kde-format
+msgid "Accept for trusted devices"
+msgstr "Aceptar de dispositivos de confianza"
+
+#: package/contents/ui/General.qml:86
+#, kde-format
+msgid "Always accept"
+msgstr "Aceptar siempre"
+
+#: package/contents/ui/General.qml:96
+#, kde-format
+msgid "Save files in:"
+msgstr "Guardar archivos en:"
+
+#: package/contents/ui/General.qml:120 package/contents/ui/General.qml:131
+#, kde-format
+msgid "Select folder"
+msgstr "Seleccionar carpeta"

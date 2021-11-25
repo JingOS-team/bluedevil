@@ -1,9 +1,11 @@
-
-/**
- * SPDX-FileCopyrightText: 2021 Wang Rui <wangrui@jingos.com>
- *                         
- * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+/*
+ * Copyright (C) 2021 Beijing Jingling Information System Technology Co., Ltd. All rights reserved.
+ *
+ * Authors:
+ * Liu Bangguo <liubangguo@jingos.com>
+ *
  */
+
  
 import QtQuick 2.2
 import org.kde.kirigami 2.15
@@ -132,7 +134,7 @@ Popup {
                 width: parent.width
                 height: 1
 
-                color: "#FFE5E5EA"
+                color: "#FFF0F0F0"
             }
 
             TextField {

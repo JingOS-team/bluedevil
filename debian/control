@@ -1,0 +1,61 @@
+Source: bluedevil
+Section: net
+Priority: optional
+Maintainer: Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Uploaders: Florian Reinhard <florian.reinhard@googlemail.com>,
+           George Kiagiadakis <kiagiadakis.george@gmail.com>,
+           Mark Purcell <msp@debian.org>,
+           Modestas Vainius <modax@debian.org>,
+           Maximiliano Curia <maxy@debian.org>,
+Build-Depends: cmake (>= 3.0~),
+               debhelper (>= 11~),
+               extra-cmake-modules (>= 5.50.0~),
+               kded5-dev (>= 5.50.0~),
+               libkf5bluezqt-dev (>= 5.50.0~),
+               libkf5coreaddons-dev (>= 5.50.0~),
+               libkf5dbusaddons-dev (>= 5.50.0~),
+               libkf5i18n-dev (>= 5.50.0~),
+               libkf5iconthemes-dev (>= 5.50.0~),
+               libkf5declarative-dev,
+               libkf5kio-dev (>= 5.50.0~),
+               libkf5notifications-dev (>= 5.50.0~),
+               libkf5plasma-dev (>= 5.50.0~),
+               libkf5widgetsaddons-dev (>= 5.50.0~),
+               libkf5windowsystem-dev (>= 5.50.0~),
+               pkg-kde-tools (>= 0.15.16),
+               qtbase5-dev (>= 5.11.0~),
+               qtdeclarative5-dev (>= 5.11.0~),
+               shared-mime-info,
+               qtconnectivity5-dev,
+               qml-module-qtbluetooth
+Standards-Version: 4.1.4
+Homepage: https://projects.kde.org/projects/kde/workspace/bluedevil
+Vcs-Git: https://salsa.debian.org/qt-kde-team/kde/bluedevil.git
+Vcs-Browser: https://salsa.debian.org/qt-kde-team/kde/bluedevil
+
+Package: bluedevil
+Architecture: linux-any
+Depends: bluez (>= 5),
+         bluez-obexd,
+         plasma-framework,
+         qml-module-org-kde-bluezqt,
+         qml-module-org-kde-kio,
+         qml-module-org-kde-kquickcontrolsaddons,
+         qml-module-qtquick-layouts,
+         qml-module-qtquick2,
+         qml-module-qtbluetooth,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Suggests: pulseaudio-module-bluetooth | bluez-alsa
+Description: KDE Bluetooth stack
+ BlueDevil is a set of components which integrate Bluetooth in KDE.
+ It contains:
+  * A KDE Control Module (KCM) to configure all the Bluetooth-related options.
+  * Integration with the KDE input/output system (KIO), which allows you to
+    discover and explore Bluetooth devices from your favorite file browser.
+  * A wizard to pair your devices and connect directly to services they offer,
+    such as input (mouse, keyboard, Wiimote) and audio (headsets, phones).
+  * A system tray application from where all BlueDevil actions can be done
+    (disconnect devices, send files, configure, etc).
+  * A daemon which listens to incoming requests, for example to receive files
+    or to introduce a requested PIN.

@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2014-2015 David Rosca <nowrep@gmail.com>
+    SPDX-FileCopyrightText: 2021 Liu Bangguo <liubangguo@jingos.com>
 
     SPDX-License-Identifier: LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL
 */
@@ -10,6 +11,7 @@
 #include <BluezQt/Device>
 #include <QDebug>
 #include <KLocalizedString>
+#include <QDBusConnection>
 
 class DevicesProxyModel;
 DevicesProxyModel::DevicesProxyModel(QObject *parent)
@@ -19,6 +21,14 @@ DevicesProxyModel::DevicesProxyModel(QObject *parent)
     sort(0, Qt::DescendingOrder);
     m_manager = new BluezQt::Manager(this);
     connect(m_manager, &BluezQt::Manager::bluetoothBlockedChanged, this, &DevicesProxyModel::bluetoothBlockedChanged);
+    QDBusConnection::sessionBus().connect(QString(), QString("/org/kde/jingos/kcm_bluetooth"), "org.kde.jingos.kcm_bluetooth",
+                                                        "deviceRemove", this, SLOT(deviceRemoved()));
+}
+
+void  DevicesProxyModel::deviceRemoved()
+{
+    m_connectedName = "";
+    emit connectedNameChanged(m_connectedName);
 }
 
 void DevicesProxyModel::bluetoothBlockedChanged(bool blocked)
@@ -90,11 +100,32 @@ bool DevicesProxyModel::lessThan(const QModelIndex &left, const QModelIndex &rig
     // bool leftConnected = left.data(BluezQt::DevicesModel::ConnectedRole).toBool();
     // bool rightConnected = right.data(BluezQt::DevicesModel::ConnectedRole).toBool();
 
-    
+    const QString &leftName = left.data(BluezQt::DevicesModel::NameRole).toString();
+    const QString &rightName = right.data(BluezQt::DevicesModel::NameRole).toString();
 
+    const int &leftType = left.data(BluezQt::DevicesModel::TypeRole).toInt();
+    const int &rightType = right.data(BluezQt::DevicesModel::TypeRole).toInt();
+
+    qint16 leftRssi = left.data(BluezQt::DevicesModel::RssiRole).toInt();
+    qint16 rightRssi = right.data(BluezQt::DevicesModel::RssiRole).toInt();
+    
     if (leftPaired < rightPaired) {
         return true;
     } else if (leftPaired > rightPaired) {
+        return false;
+    }
+
+    if(leftType != 18 && rightType != 18){
+        if(leftRssi < rightRssi){
+            return true;
+        }else if(leftRssi > rightRssi){
+            return false;
+        }
+    }
+    
+    if (leftType > rightType) {
+        return true;
+    } else if (leftType < rightType) {
         return false;
     }
 
@@ -103,16 +134,12 @@ bool DevicesProxyModel::lessThan(const QModelIndex &left, const QModelIndex &rig
     // } else if (leftConnected > rightConnected) {
     //     return false;
     // }
-
-    qint16 leftRssi = left.data(BluezQt::DevicesModel::RssiRole).toInt();
-    qint16 rightRssi = right.data(BluezQt::DevicesModel::RssiRole).toInt();
+    
     if(!leftPaired && leftRssi < rightRssi){
         return true;
     }else if(!leftPaired && leftRssi > rightRssi){
         return false;
     }
-    const QString &leftName = left.data(BluezQt::DevicesModel::NameRole).toString();
-    const QString &rightName = right.data(BluezQt::DevicesModel::NameRole).toString();
 
     return QString::localeAwareCompare(leftName, rightName) > 0;
 }
@@ -153,19 +180,20 @@ bool DevicesProxyModel::filterAcceptsRow(int source_row, const QModelIndex &sour
         emit connectedNameChanged(m_connectedName);
         emit connectedAdressChanged(m_connectedAdress);
     }
-    if(index.data(BluezQt::DevicesModel::TypeRole).toInt() == 18){
-        return false;
-    }
-    if(index.data(BluezQt::DevicesModel::NameRole).toString().replace("-","") == 
-        index.data(BluezQt::DevicesModel::AddressRole).toString().replace(":","")){
-        return false;
-    }
+    // if(index.data(BluezQt::DevicesModel::NameRole).toString().replace("-","") == 
+    //     index.data(BluezQt::DevicesModel::AddressRole).toString().replace(":","")){
+    //     return false;
+    // }
     if(!index.data(BluezQt::DevicesModel::PairedRole).toBool() && index.data(BluezQt::DevicesModel::RssiRole).toInt() == -32768){
         return false;
     }
+    // if(index.data(BluezQt::DevicesModel::RssiRole).toInt() == -32768){
+    //     return false;
+    // }
     // Only show paired devices in the KCM and applet
     // return index.data(BluezQt::DevicesModel::PairedRole).toBool();
     bool adapterPowered = index.data(BluezQt::DevicesModel::AdapterPoweredRole).toBool();
     bool adapterPairable = index.data(BluezQt::DevicesModel::AdapterPairableRole).toBool();
-    return adapterPowered && adapterPairable;
+    BluezQt::Device::Type type = index.data(BluezQt::DevicesModel::TypeRole).value<BluezQt::Device::Type>();
+    return adapterPowered && adapterPairable && type!=BluezQt::Device::Type::Uncategorized;
 }

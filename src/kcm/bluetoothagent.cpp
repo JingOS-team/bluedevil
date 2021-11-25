@@ -1,6 +1,7 @@
 /*
  *   SPDX-FileCopyrightText: 2010 Alex Fiestas <alex@eyeos.org>
  *   SPDX-FileCopyrightText: 2010 UFO Coders <info@ufocoders.com>
+ *   SPDX-FileCopyrightText: 2021 Liu Bangguo <liubangguo@jingos.com>
  *
  *   SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -114,7 +115,7 @@ void BluetoothAgent::requestPinCode(BluezQt::DevicePtr device, const BluezQt::Re
 {
     qDebug() << "AGENT-RequestPinCode" << device->ubi();
 
-    Q_EMIT pinRequested(m_pin);
+    Q_EMIT pinRequested(device,m_pin);
     req.accept(m_pin);
 }
 
@@ -122,14 +123,14 @@ void BluetoothAgent::displayPinCode(BluezQt::DevicePtr device, const QString &pi
 {
     qDebug() << "AGENT-DisplayPinCode" << device->ubi() << pinCode;
 
-    Q_EMIT pinRequested(pinCode);
+    Q_EMIT pinRequested(device,pinCode);
 }
 
 void BluetoothAgent::requestPasskey(BluezQt::DevicePtr device, const BluezQt::Request<quint32> &req)
 {
     qDebug() << "AGENT-RequestPasskey" << device->ubi();
 
-    Q_EMIT pinRequested(m_pin);
+    Q_EMIT pinRequested(device,m_pin);
     req.accept(m_pin.toUInt());
 }
 
@@ -139,7 +140,7 @@ void BluetoothAgent::displayPasskey(BluezQt::DevicePtr device, const QString &pa
 
     qDebug() << "AGENT-DisplayPasskey" << device->ubi() << passkey;
 
-    Q_EMIT pinRequested(passkey);
+    Q_EMIT pinRequested(device,passkey);
 }
 
 void BluetoothAgent::requestConfirmation(BluezQt::DevicePtr device, const QString &passkey, const BluezQt::Request<> &req)
@@ -147,5 +148,31 @@ void BluetoothAgent::requestConfirmation(BluezQt::DevicePtr device, const QStrin
     
     qDebug() << "AGENT-RequestConfirmation " << device->ubi() << passkey;
 
-    Q_EMIT confirmationRequested(passkey, req);
+    Q_EMIT confirmationRequested(device, passkey, req);
+}
+
+void BluetoothAgent::requestAuthorization(BluezQt::DevicePtr device, const BluezQt::Request<> &request)
+{
+    qDebug() << "AGENT-RequestAuthorization";
+    // request.accept();
+}
+
+void BluetoothAgent::authorizeService(BluezQt::DevicePtr device, const QString &uuid, const BluezQt::Request<> &request)
+{
+    // TODO: Show user the Service UUID
+    qDebug() << "AGENT-AuthorizeService" << device->name() << "Service:" << uuid;
+    request.accept();
+}
+void BluetoothAgent::release()
+{
+    qDebug() << "AGENT-Release";
+
+    Q_EMIT agentReleased();
+}
+
+void BluetoothAgent::cancel()
+{
+    qDebug() << "AGENT-Cancel";
+
+    Q_EMIT agentCanceled();
 }

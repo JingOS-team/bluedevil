@@ -1,0 +1,235 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the bluedevil package.
+#
+# Xəyyam Qocayev <xxmn77@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: bluedevil\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-12-26 02:34+0100\n"
+"PO-Revision-Date: 2020-07-14 21:57+0400\n"
+"Last-Translator: Xəyyam Qocayev <xxmn77@gmail.com>\n"
+"Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
+"Language: az\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 20.04.3\n"
+
+#: package/contents/ui/BluetoothApplet.qml:23
+#, kde-format
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: package/contents/ui/BluetoothApplet.qml:38
+#, kde-format
+msgid "Configure &Bluetooth..."
+msgstr "&Bluetooth Ayarları..."
+
+#: package/contents/ui/DeviceItem.qml:34
+#, kde-format
+msgid "Disconnect"
+msgstr "Ayırmaq"
+
+#: package/contents/ui/DeviceItem.qml:34
+#, kde-format
+msgid "Connect"
+msgstr "Qoşmaq"
+
+#: package/contents/ui/DeviceItem.qml:66
+#, kde-format
+msgid "Browse Files"
+msgstr "Fayllara baxış"
+
+#: package/contents/ui/DeviceItem.qml:78
+#, kde-format
+msgid "Send File"
+msgstr "Fayl göndərmək"
+
+#: package/contents/ui/DeviceItem.qml:143
+#, kde-format
+msgid "Copy"
+msgstr "Surətini çıxarmaq"
+
+#: package/contents/ui/DeviceItem.qml:202
+#, kde-format
+msgid "Yes"
+msgstr "Bəli"
+
+#: package/contents/ui/DeviceItem.qml:204
+#, kde-format
+msgid "No"
+msgstr "Xeyr"
+
+#: package/contents/ui/DeviceItem.qml:220
+#, kde-format
+msgid "Remote Name"
+msgstr "Cihazın adı"
+
+#: package/contents/ui/DeviceItem.qml:224
+#, kde-format
+msgid "Address"
+msgstr "Ünvan"
+
+#: package/contents/ui/DeviceItem.qml:227
+#, kde-format
+msgid "Paired"
+msgstr "Qoşuldu"
+
+#: package/contents/ui/DeviceItem.qml:230
+#, kde-format
+msgid "Trusted"
+msgstr "Etibarlıdır"
+
+#: package/contents/ui/DeviceItem.qml:233
+#, kde-format
+msgid "Adapter"
+msgstr "Uzlaşdırıcı"
+
+#: package/contents/ui/DeviceItem.qml:242
+#, kde-format
+msgid "Disconnecting"
+msgstr "Ayrılır"
+
+#: package/contents/ui/DeviceItem.qml:242
+#, kde-format
+msgid "Connecting"
+msgstr "Qoşulur"
+
+#: package/contents/ui/DeviceItem.qml:251
+#, kde-format
+msgid "Audio device"
+msgstr "Səs cihazı"
+
+#: package/contents/ui/DeviceItem.qml:258
+#, kde-format
+msgid "Input device"
+msgstr "Daxiletmə cihazı"
+
+#: package/contents/ui/DeviceItem.qml:265
+#, kde-format
+msgid "File transfer"
+msgstr "Fayl ötürməsi"
+
+#: package/contents/ui/DeviceItem.qml:268
+#, kde-format
+msgid "Send file"
+msgstr "Fayl göndərmək"
+
+#: package/contents/ui/DeviceItem.qml:271
+#, kde-format
+msgid "Input"
+msgstr "Daxil etmək"
+
+#: package/contents/ui/DeviceItem.qml:274
+#, kde-format
+msgid "Audio"
+msgstr "Səs"
+
+#: package/contents/ui/DeviceItem.qml:277
+#, kde-format
+msgid "Network"
+msgstr "Şəbəkə"
+
+#: package/contents/ui/DeviceItem.qml:281
+#, kde-format
+msgid "Other device"
+msgstr "Digər cihaz"
+
+#: package/contents/ui/DeviceItem.qml:288
+#, kde-format
+msgid "%1% Battery"
+msgstr "%1% Batareya"
+
+#: package/contents/ui/DeviceItem.qml:329
+#, kde-format
+msgctxt "Notification when the connection failed due to Failed:HostIsDown"
+msgid "The device is unreachable"
+msgstr "Bu cihaz əlçatmazdır"
+
+#: package/contents/ui/DeviceItem.qml:332
+#, kde-format
+msgctxt "Notification when the connection failed due to Failed"
+msgid "Connection to the device failed"
+msgstr "Cihaza qoşulmaq mümkün olmadı"
+
+#: package/contents/ui/DeviceItem.qml:338
+#, kde-format
+msgctxt "Notification when the connection failed due to NotReady"
+msgid "The device is not ready"
+msgstr "Bu cihaz hazır deyil"
+
+#: package/contents/ui/FullRepresentation.qml:23
+#, kde-format
+msgid "Add New Device"
+msgstr "Yeni cihaz əlavə etmək"
+
+#: package/contents/ui/FullRepresentation.qml:35
+#: package/contents/ui/Toolbar.qml:31
+#, kde-format
+msgid "Enable Bluetooth"
+msgstr "Bluetooth-u aktiv etmək"
+
+#: package/contents/ui/FullRepresentation.qml:74
+#, kde-format
+msgid "Connected devices"
+msgstr "Qoşulmuş cihazlar"
+
+#: package/contents/ui/FullRepresentation.qml:74
+#, kde-format
+msgid "Available devices"
+msgstr "Mövcud cihazlar"
+
+#: package/contents/ui/FullRepresentation.qml:98
+#, kde-format
+msgid "No Bluetooth Adapters Available"
+msgstr "Bluetooth uzlaşdırıcıları əlçatan deyil"
+
+#: package/contents/ui/FullRepresentation.qml:100
+#, kde-format
+msgid "Bluetooth is Disabled"
+msgstr "Bluetooth söndürülüb"
+
+#: package/contents/ui/FullRepresentation.qml:102
+#, kde-format
+msgid "No Devices Found"
+msgstr "Cihaz tapılmadı"
+
+#: package/contents/ui/logic.js:33
+#, kde-format
+msgid "Bluetooth is disabled"
+msgstr "Bluetooth söndürülüb"
+
+#: package/contents/ui/logic.js:36
+#, kde-format
+msgid "No adapters available"
+msgstr "Əlçatan uzlaşdırıcılar yoxdur"
+
+#: package/contents/ui/logic.js:38
+#, kde-format
+msgid "Bluetooth is offline"
+msgstr "Aktiv Bluetooth yoxdur"
+
+#: package/contents/ui/logic.js:41
+#, kde-format
+msgid "%1 connected"
+msgstr "%1 qoşulub"
+
+#: package/contents/ui/logic.js:43
+#, kde-format
+msgctxt "Number of connected devices"
+msgid "%1 connected device"
+msgid_plural "%1 connected devices"
+msgstr[0] "%1 qoşulmuş cihaz"
+msgstr[1] "%1 qoşulmuş cihaz"
+
+#: package/contents/ui/logic.js:49
+#, kde-format
+msgid "No connected devices"
+msgstr "Qoşulmuş cihaz yoxdur"
+
+#: package/contents/ui/Toolbar.qml:49
+#, kde-format
+msgid "Add New Device..."
+msgstr "Yeni cihaz əlavə etmək..."

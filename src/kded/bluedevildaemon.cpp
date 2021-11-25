@@ -3,6 +3,7 @@
  *  SPDX-FileCopyrightText: 2010 Eduardo Robles Elvira <edulix@gmail.com>
  *  SPDX-FileCopyrightText: 2010 UFO Coders <info@ufocoders.com>
  *  SPDX-FileCopyrightText: 2014-2015 David Rosca <nowrep@gmail.com>
+ *  SPDX-FileCopyrightText: 2021 Liu Bangguo <liubangguo@jingos.com>
  *
  *  SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -198,11 +199,11 @@ void BlueDevilDaemon::operationalChanged(bool operational)
     qCDebug(BLUEDAEMON) << "Bluetooth operational changed" << operational;
 
     if (operational) {
-        BluezQt::PendingCall *rCall = d->m_manager->registerAgent(d->m_bluezAgent);
-        connect(rCall, &BluezQt::PendingCall::finished, this, &BlueDevilDaemon::agentRegisted);
+        //BluezQt::PendingCall *rCall = d->m_manager->registerAgent(d->m_bluezAgent);
+        //connect(rCall, &BluezQt::PendingCall::finished, this, &BlueDevilDaemon::agentRegisted);
 
-        BluezQt::PendingCall *rdCall = d->m_manager->requestDefaultAgent(d->m_bluezAgent);
-        connect(rdCall, &BluezQt::PendingCall::finished, this, &BlueDevilDaemon::agentRequestedDefault);
+        //BluezQt::PendingCall *rdCall = d->m_manager->requestDefaultAgent(d->m_bluezAgent);
+        //connect(rdCall, &BluezQt::PendingCall::finished, this, &BlueDevilDaemon::agentRequestedDefault);
     } else {
         // Attempt to start bluetoothd
         BluezQt::Manager::startService();

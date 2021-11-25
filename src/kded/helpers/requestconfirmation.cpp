@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2010 Eduardo Robles Elvira <edulix@gmail.com>
  *   SPDX-FileCopyrightText: 2010 UFO Coders <info@ufocoders.com>
  *   SPDX-FileCopyrightText: 2014-2015 David Rosca <nowrep@gmail.com>
+ *   SPDX-FileCopyrightText: 2021 Liu Bangguo <liubangguo@jingos.com>
  *
  *   SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -18,7 +19,6 @@ RequestConfirmation::RequestConfirmation(BluezQt::DevicePtr device, const QStrin
     , m_device(device)
     , m_pin(pin)
 {
-    qDebug() << "----------------RequestConfirmation发送蓝牙系统广播----------------" ;
     KNotification *notification = new KNotification(QStringLiteral("RequestConfirmation"), KNotification::Persistent, this);
 
     notification->setComponentName(QStringLiteral("bluedevil"));
@@ -30,18 +30,10 @@ RequestConfirmation::RequestConfirmation(BluezQt::DevicePtr device, const QStrin
               m_device->name().toHtmlEscaped(),
               m_pin));
 
-    QStringList actions;
-    actions.append(i18nc("Notification button to know if the pin is correct or not", "PIN is correct"));
-    actions.append(i18nc("Notification button to say that the PIN is wrong", "PIN is incorrect"));
-
-    notification->setActions(actions);
-
+    notification->setActions({i18n("Pair"), i18n("Cancel")});
     connect(notification, &KNotification::action1Activated, this, &RequestConfirmation::pinCorrect);
     connect(notification, &KNotification::action2Activated, this, &RequestConfirmation::pinWrong);
-    connect(notification, &KNotification::closed, this, &RequestConfirmation::pinWrong);
-    connect(notification, &KNotification::ignored, this, &RequestConfirmation::pinWrong);
     connect(parent, SIGNAL(agentCanceled()), this, SLOT(pinWrong()));
-
     notification->sendEvent();
 }
 
